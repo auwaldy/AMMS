@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AMMS - Auwal DY Maintenance Management System</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        header p {
+            margin-top: 5px;
+            color: #cbd5e1;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .welcome {
+            margin-bottom: 20px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            color: #555;
+            font-size: 15px;
+        }
+
+        .number {
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .section {
+            margin-top: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .section h2 {
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #f1f5f9;
+        }
+
+        .running {
+            color: green;
+            font-weight: bold;
+        }
+
+        .warning {
+            color: #d97706;
+            font-weight: bold;
+        }
+
+        .danger {
+            color: red;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #666;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>AMMS</h1>
+    <p>Auwal DY Maintenance Management System</p>
+</header>
+
+<div class="container">
+
+    <div class="welcome">
+        <h2>Maintenance Dashboard</h2>
+        <p>Heavy Equipment Maintenance Management</p>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Machines</h3>
+            <div class="number">120</div>
+        </div>
+
+        <div class="card">
+            <h3>Running</h3>
+            <div class="number running">95</div>
+        </div>
+
+        <div class="card">
+            <h3>Under Maintenance</h3>
+            <div class="number warning">17</div>
+        </div>
+
+        <div class="card">
+            <h3>Breakdown</h3>
+            <div class="number danger">8</div>
+        </div>
+
+    </div>
+
+    <div class="section">
+
+        <h2>Machines</h2>
+
+        <table>
+
+            <tr>
+                <th>Machine</th>
+                <th>Type</th>
+                <th>Model</th>
+                <th>Hours</th>
+                <th>Status</th>
+            </tr>
+
+            <tr>
+                <td>PC300-01</td>
+                <td>Excavator</td>
+                <td>Komatsu PC300</td>
+                <td>8,540 H</td>
+                <td class="running">Running</td>
+            </tr>
+
+            <tr>
+                <td>WA470-01</td>
+                <td>Loader</td>
+                <td>Komatsu WA470</td>
+                <td>12,450 H</td>
+                <td class="warning">Maintenance</td>
+            </tr>
+
+            <tr>
+                <td>CAT966-01</td>
+                <td>Loader</td>
+                <td>CAT 966</td>
+                <td>9,850 H</td>
+                <td class="danger">Breakdown</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+    <div class="section">
+
+        <h2>Upcoming Services</h2>
+
+        <table>
+
+            <tr>
+                <th>Machine</th>
+                <th>Service</th>
+                <th>Due</th>
+            </tr>
+
+            <tr>
+                <td>PC300-01</td>
+                <td>1000 Hours Service</td>
+                <td>9,000 H</td>
+            </tr>
+
+            <tr>
+                <td>WA470-01</td>
+                <td>500 Hours Service</td>
+                <td>12,500 H</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 AMMS - Auwal DY Maintenance Management System
+</footer>
+
+</body>
+  </html>
