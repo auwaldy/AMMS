@@ -1,236 +1,1047 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMMS - Auwal DY Maintenance Management System</title>
 
-    <title>AMMS - Auwal DY Maintenance Management System</title>
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
+body{
+  background:#f4f6f8;
+  color:#222;
+}
 
-        body {
-            background: #f4f6f8;
-            color: #222;
-        }
+header{
+  background:#111827;
+  color:white;
+  padding:22px;
+}
 
-        header {
-            background: #111827;
-            color: white;
-            padding: 20px;
-        }
+header h1{
+  font-size:25px;
+}
 
-        header h1 {
-            font-size: 24px;
-        }
+header p{
+  margin-top:6px;
+  color:#cbd5e1;
+}
 
-        header p {
-            margin-top: 5px;
-            color: #cbd5e1;
-        }
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+}
 
-        .container {
-            padding: 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
+.dashboard{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+  margin-bottom:25px;
+}
 
-        .welcome {
-            margin-bottom: 20px;
-        }
+.card{
+  background:white;
+  padding:20px;
+  border-radius:14px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-        }
+.card h3{
+  color:#555;
+  font-size:15px;
+}
 
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
+.number{
+  font-size:32px;
+  font-weight:bold;
+  margin-top:10px;
+}
 
-        .card h3 {
-            color: #555;
-            font-size: 15px;
-        }
+.green{color:green}
+.orange{color:#d97706}
+.red{color:red}
+.blue{color:#2563eb}
 
-        .number {
-            font-size: 30px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
+.section{
+  background:white;
+  padding:20px;
+  border-radius:14px;
+  margin-top:25px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
 
-        .section {
-            margin-top: 30px;
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-        }
+.section h2{
+  margin-bottom:15px;
+}
 
-        .section h2 {
-            margin-bottom: 15px;
-        }
+table{
+  width:100%;
+  border-collapse:collapse;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+th,td{
+  padding:12px 10px;
+  border-bottom:1px solid #ddd;
+  text-align:left;
+}
 
-        th, td {
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
-            text-align: left;
-        }
+th{
+  background:#eef2f7;
+}
 
-        th {
-            background: #f1f5f9;
-        }
+.status{
+  font-weight:bold;
+}
 
-        .running {
-            color: green;
-            font-weight: bold;
-        }
+.running{color:green}
+.maintenance{color:#d97706}
+.breakdown{color:red}
 
-        .warning {
-            color: #d97706;
-            font-weight: bold;
-        }
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:12px;
+}
 
-        .danger {
-            color: red;
-            font-weight: bold;
-        }
+input,select,button{
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:15px;
+}
 
-        footer {
-            text-align: center;
-            padding: 25px;
-            color: #666;
-            margin-top: 30px;
-        }
-    </style>
+button{
+  border:none;
+  background:#111827;
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+button:hover{
+  opacity:.9;
+}
+
+.btn-blue{
+  background:#2563eb;
+}
+
+.btn-red{
+  background:#dc2626;
+}
+
+.btn-green{
+  background:#16a34a;
+}
+
+.actions{
+  display:flex;
+  gap:7px;
+}
+
+.actions button{
+  width:auto;
+  padding:7px 10px;
+  font-size:12px;
+}
+
+.empty{
+  padding:20px;
+  text-align:center;
+  color:#777;
+}
+
+footer{
+  text-align:center;
+  padding:30px 10px;
+  color:#666;
+}
+
+@media(max-width:600px){
+  .container{
+    padding:12px;
+  }
+
+  header{
+    padding:18px 15px;
+  }
+
+  header h1{
+    font-size:21px;
+  }
+
+  th,td{
+    padding:9px 6px;
+    font-size:13px;
+  }
+
+  .section{
+    padding:14px;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <h1>AMMS</h1>
-    <p>Auwal DY Maintenance Management System</p>
+  <h1>AMMS</h1>
+  <p>Auwal DY Maintenance Management System</p>
 </header>
 
 <div class="container">
 
-    <div class="welcome">
-        <h2>Maintenance Dashboard</h2>
-        <p>Heavy Equipment Maintenance Management</p>
+  <!-- DASHBOARD -->
+  <div class="dashboard">
+
+    <div class="card">
+      <h3>Total Machines</h3>
+      <div class="number blue" id="totalMachines">0</div>
     </div>
 
-    <div class="cards">
-
-        <div class="card">
-            <h3>Total Machines</h3>
-            <div class="number">120</div>
-        </div>
-
-        <div class="card">
-            <h3>Running</h3>
-            <div class="number running">95</div>
-        </div>
-
-        <div class="card">
-            <h3>Under Maintenance</h3>
-            <div class="number warning">17</div>
-        </div>
-
-        <div class="card">
-            <h3>Breakdown</h3>
-            <div class="number danger">8</div>
-        </div>
-
+    <div class="card">
+      <h3>Running</h3>
+      <div class="number green" id="runningMachines">0</div>
     </div>
 
-    <div class="section">
+    <div class="card">
+      <h3>Under Maintenance</h3>
+      <div class="number orange" id="maintenanceMachines">0</div>
+    </div>
 
-        <h2>Machines</h2>
+    <div class="card">
+      <h3>Breakdown</h3>
+      <div class="number red" id="breakdownMachines">0</div>
+    </div>
 
-        <table>
+  </div>
 
-            <tr>
-                <th>Machine</th>
-                <th>Type</th>
-                <th>Model</th>
-                <th>Hours</th>
-                <th>Status</th>
-            </tr>
 
-            <tr>
-                <td>PC300-01</td>
-                <td>Excavator</td>
-                <td>Komatsu PC300</td>
-                <td>8,540 H</td>
-                <td class="running">Running</td>
-            </tr>
+  <!-- ADD MACHINE -->
+  <div class="section">
 
-            <tr>
-                <td>WA470-01</td>
-                <td>Loader</td>
-                <td>Komatsu WA470</td>
-                <td>12,450 H</td>
-                <td class="warning">Maintenance</td>
-            </tr>
+    <h2>➕ Add Machine</h2>
 
-            <tr>
-                <td>CAT966-01</td>
-                <td>Loader</td>
-                <td>CAT 966</td>
-                <td>9,850 H</td>
-                <td class="danger">Breakdown</td>
-            </tr>
+    <div class="form-grid">
 
-        </table>
+      <input id="machineName"
+             type="text"
+             placeholder="Machine ID e.g. PC300-01">
+
+      <input id="machineType"
+             type="text"
+             placeholder="Type e.g. Excavator">
+
+      <input id="machineModel"
+             type="text"
+             placeholder="Model e.g. Komatsu PC300">
+
+      <input id="machineHours"
+             type="number"
+             placeholder="Current Hours">
+
+      <select id="machineStatus">
+        <option value="Running">Running</option>
+        <option value="Maintenance">Maintenance</option>
+        <option value="Breakdown">Breakdown</option>
+      </select>
+
+      <button class="btn-blue" onclick="addMachine()">
+        Add Machine
+      </button>
 
     </div>
 
-    <div class="section">
+  </div>
 
-        <h2>Upcoming Services</h2>
 
-        <table>
+  <!-- MACHINES -->
+  <div class="section">
 
-            <tr>
-                <th>Machine</th>
-                <th>Service</th>
-                <th>Due</th>
-            </tr>
+    <h2>🔧 Machines</h2>
 
-            <tr>
-                <td>PC300-01</td>
-                <td>1000 Hours Service</td>
-                <td>9,000 H</td>
-            </tr>
+    <div style="overflow-x:auto">
 
-            <tr>
-                <td>WA470-01</td>
-                <td>500 Hours Service</td>
-                <td>12,500 H</td>
-            </tr>
+      <table>
 
-        </table>
+        <thead>
+          <tr>
+            <th>Machine</th>
+            <th>Type</th>
+            <th>Model</th>
+            <th>Hours</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody id="machineTable"></tbody>
+
+      </table>
 
     </div>
+
+  </div>
+
+
+  <!-- SERVICE HOURS -->
+  <div class="section">
+
+    <h2>⏱️ Service Hours</h2>
+
+    <div class="form-grid">
+
+      <input id="serviceMachine"
+             type="text"
+             placeholder="Machine ID">
+
+      <input id="serviceType"
+             type="text"
+             placeholder="Service e.g. 500 Hours">
+
+      <input id="serviceDue"
+             type="number"
+             placeholder="Due Hours">
+
+      <button class="btn-green" onclick="addService()">
+        Add Service
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- UPCOMING SERVICES -->
+  <div class="section">
+
+    <h2>📅 Upcoming Services</h2>
+
+    <div style="overflow-x:auto">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Machine</th>
+            <th>Service</th>
+            <th>Due</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody id="serviceTable"></tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <!-- MAINTENANCE CHECKLIST -->
+  <div class="section">
+
+    <h2>🛠️ Maintenance Checklist</h2>
+
+    <div class="form-grid">
+
+      <select id="checkMachine">
+        <option value="">Select Machine</option>
+      </select>
+
+      <select id="checkService">
+        <option>250 Hours Service</option>
+        <option>500 Hours Service</option>
+        <option>1000 Hours Service</option>
+        <option>2000 Hours Service</option>
+      </select>
+
+      <button class="btn-blue" onclick="startMaintenance()">
+        Start Maintenance
+      </button>
+
+    </div>
+
+    <br>
+
+    <div id="maintenanceList"></div>
+
+  </div>
+
+
+  <!-- BREAKDOWN -->
+  <div class="section">
+
+    <h2>🚨 Breakdown Report</h2>
+
+    <div class="form-grid">
+
+      <input id="breakMachine"
+             type="text"
+             placeholder="Machine ID">
+
+      <input id="breakProblem"
+             type="text"
+             placeholder="Problem / Fault">
+
+      <button class="btn-red" onclick="addBreakdown()">
+        Report Breakdown
+      </button>
+
+    </div>
+
+    <br>
+
+    <div id="breakdownList"></div>
+
+  </div>
 
 </div>
 
+
 <footer>
-    © 2026 AMMS - Auwal DY Maintenance Management System
+  <strong>AMMS</strong><br>
+  Auwal DY Maintenance Management System<br>
+  Heavy Equipment Maintenance & Service Management
 </footer>
 
+
+<script>
+
+/* =========================
+   DATA STORAGE
+========================= */
+
+let machines = JSON.parse(
+  localStorage.getItem("ammsMachines") || "[]"
+);
+
+let services = JSON.parse(
+  localStorage.getItem("ammsServices") || "[]"
+);
+
+let breakdowns = JSON.parse(
+  localStorage.getItem("ammsBreakdowns") || "[]"
+);
+
+
+/* =========================
+   SAVE DATA
+========================= */
+
+function saveData(){
+
+  localStorage.setItem(
+    "ammsMachines",
+    JSON.stringify(machines)
+  );
+
+  localStorage.setItem(
+    "ammsServices",
+    JSON.stringify(services)
+  );
+
+  localStorage.setItem(
+    "ammsBreakdowns",
+    JSON.stringify(breakdowns)
+  );
+
+}
+
+
+/* =========================
+   ADD MACHINE
+========================= */
+
+function addMachine(){
+
+  const name =
+    document.getElementById("machineName").value.trim();
+
+  const type =
+    document.getElementById("machineType").value.trim();
+
+  const model =
+    document.getElementById("machineModel").value.trim();
+
+  const hours =
+    Number(document.getElementById("machineHours").value);
+
+  const status =
+    document.getElementById("machineStatus").value;
+
+  if(!name || !type || !model){
+
+    alert("Please enter Machine ID, Type and Model.");
+
+    return;
+  }
+
+  machines.push({
+    id:Date.now(),
+    name:name,
+    type:type,
+    model:model,
+    hours:hours || 0,
+    status:status
+  });
+
+  saveData();
+
+  clearMachineForm();
+
+  renderAll();
+
+}
+
+
+/* =========================
+   CLEAR MACHINE FORM
+========================= */
+
+function clearMachineForm(){
+
+  document.getElementById("machineName").value="";
+  document.getElementById("machineType").value="";
+  document.getElementById("machineModel").value="";
+  document.getElementById("machineHours").value="";
+  document.getElementById("machineStatus").value="Running";
+
+}
+
+
+/* =========================
+   DELETE MACHINE
+========================= */
+
+function deleteMachine(id){
+
+  if(!confirm("Delete this machine?")) return;
+
+  machines =
+    machines.filter(machine => machine.id !== id);
+
+  saveData();
+
+  renderAll();
+
+}
+
+
+/* =========================
+   CHANGE STATUS
+========================= */
+
+function changeStatus(id){
+
+  const machine =
+    machines.find(m => m.id === id);
+
+  if(!machine) return;
+
+  const newStatus =
+    prompt(
+      "Enter status: Running, Maintenance, or Breakdown",
+      machine.status
+    );
+
+  if(
+    newStatus === "Running" ||
+    newStatus === "Maintenance" ||
+    newStatus === "Breakdown"
+  ){
+
+    machine.status = newStatus;
+
+    saveData();
+
+    renderAll();
+
+  }
+
+}
+
+
+/* =========================
+   RENDER MACHINES
+========================= */
+
+function renderMachines(){
+
+  const table =
+    document.getElementById("machineTable");
+
+  table.innerHTML="";
+
+  if(machines.length === 0){
+
+    table.innerHTML =
+      `<tr>
+        <td colspan="6" class="empty">
+          No machines added yet.
+        </td>
+      </tr>`;
+
+    return;
+  }
+
+  machines.forEach(machine => {
+
+    let statusClass =
+      machine.status.toLowerCase();
+
+    table.innerHTML += `
+
+      <tr>
+
+        <td>${machine.name}</td>
+
+        <td>${machine.type}</td>
+
+        <td>${machine.model}</td>
+
+        <td>${Number(machine.hours).toLocaleString()} H</td>
+
+        <td class="status ${statusClass}">
+          ${machine.status}
+        </td>
+
+        <td>
+
+          <div class="actions">
+
+            <button
+              class="btn-blue"
+              onclick="changeStatus(${machine.id})">
+              Status
+            </button>
+
+            <button
+              class="btn-red"
+              onclick="deleteMachine(${machine.id})">
+              Delete
+            </button>
+
+          </div>
+
+        </td>
+
+      </tr>
+
+    `;
+
+  });
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function renderDashboard(){
+
+  document.getElementById("totalMachines")
+    .textContent = machines.length;
+
+  document.getElementById("runningMachines")
+    .textContent =
+      machines.filter(m => m.status === "Running").length;
+
+  document.getElementById("maintenanceMachines")
+    .textContent =
+      machines.filter(m => m.status === "Maintenance").length;
+
+  document.getElementById("breakdownMachines")
+    .textContent =
+      machines.filter(m => m.status === "Breakdown").length;
+
+}
+
+
+/* =========================
+   ADD SERVICE
+========================= */
+
+function addService(){
+
+  const machine =
+    document.getElementById("serviceMachine").value.trim();
+
+  const type =
+    document.getElementById("serviceType").value.trim();
+
+  const due =
+    Number(document.getElementById("serviceDue").value);
+
+  if(!machine || !type || !due){
+
+    alert("Please enter Machine, Service and Due Hours.");
+
+    return;
+  }
+
+  services.push({
+
+    id:Date.now(),
+    machine:machine,
+    service:type,
+    due:due
+
+  });
+
+  saveData();
+
+  document.getElementById("serviceMachine").value="";
+  document.getElementById("serviceType").value="";
+  document.getElementById("serviceDue").value="";
+
+  renderServices();
+
+}
+
+
+/* =========================
+   RENDER SERVICES
+========================= */
+
+function renderServices(){
+
+  const table =
+    document.getElementById("serviceTable");
+
+  table.innerHTML="";
+
+  if(services.length === 0){
+
+    table.innerHTML =
+      `<tr>
+        <td colspan="4" class="empty">
+          No upcoming services.
+        </td>
+      </tr>`;
+
+    return;
+  }
+
+  services.forEach(service => {
+
+    table.innerHTML += `
+
+      <tr>
+
+        <td>${service.machine}</td>
+
+        <td>${service.service}</td>
+
+        <td>${Number(service.due).toLocaleString()} H</td>
+
+        <td>
+
+          <button
+            class="btn-red"
+            onclick="deleteService(${service.id})">
+            Delete
+          </button>
+
+        </td>
+
+      </tr>
+
+    `;
+
+  });
+
+}
+
+
+/* =========================
+   DELETE SERVICE
+========================= */
+
+function deleteService(id){
+
+  services =
+    services.filter(s => s.id !== id);
+
+  saveData();
+
+  renderServices();
+
+}
+
+
+/* =========================
+   MACHINE SELECT
+========================= */
+
+function updateMachineSelect(){
+
+  const select =
+    document.getElementById("checkMachine");
+
+  select.innerHTML =
+    `<option value="">Select Machine</option>`;
+
+  machines.forEach(machine => {
+
+    select.innerHTML +=
+      `<option value="${machine.name}">
+        ${machine.name} - ${machine.model}
+      </option>`;
+
+  });
+
+}
+
+
+/* =========================
+   MAINTENANCE
+========================= */
+
+function startMaintenance(){
+
+  const machine =
+    document.getElementById("checkMachine").value;
+
+  const service =
+    document.getElementById("checkService").value;
+
+  if(!machine){
+
+    alert("Select a machine first.");
+
+    return;
+  }
+
+  const list = [
+
+    "Change engine oil",
+    "Change engine oil filter",
+    "Check fuel filters",
+    "Drain water separator",
+    "Check air filter",
+    "Check hydraulic oil",
+    "Check hydraulic filter",
+    "Grease pivot pins",
+    "Check track tension",
+    "Check coolant level",
+    "Check belts",
+    "Check battery",
+    "Check final drive oil",
+    "Check swing gearbox oil"
+
+  ];
+
+  let html = `
+
+    <h3>${machine} - ${service}</h3>
+
+    <br>
+
+  `;
+
+  list.forEach((item,index) => {
+
+    html += `
+
+      <label style="
+        display:block;
+        padding:9px;
+        border-bottom:1px solid #ddd;
+      ">
+
+        <input
+          type="checkbox"
+          id="task${index}"
+          style="width:auto;margin-right:8px">
+
+        ${item}
+
+      </label>
+
+    `;
+
+  });
+
+  html += `
+
+    <br>
+
+    <button
+      class="btn-green"
+      onclick="finishMaintenance()">
+      Complete Maintenance
+    </button>
+
+  `;
+
+  document.getElementById("maintenanceList")
+    .innerHTML = html;
+
+}
+
+
+/* =========================
+   COMPLETE MAINTENANCE
+========================= */
+
+function finishMaintenance(){
+
+  alert(
+    "Maintenance checklist completed successfully."
+  );
+
+}
+
+
+/* =========================
+   BREAKDOWN
+========================= */
+
+function addBreakdown(){
+
+  const machine =
+    document.getElementById("breakMachine").value.trim();
+
+  const problem =
+    document.getElementById("breakProblem").value.trim();
+
+  if(!machine || !problem){
+
+    alert("Enter Machine ID and Problem.");
+
+    return;
+  }
+
+  breakdowns.push({
+
+    id:Date.now(),
+    machine:machine,
+    problem:problem,
+    date:new Date().toLocaleString()
+
+  });
+
+  saveData();
+
+  document.getElementById("breakMachine").value="";
+  document.getElementById("breakProblem").value="";
+
+  renderBreakdowns();
+
+}
+
+
+/* =========================
+   RENDER BREAKDOWNS
+========================= */
+
+function renderBreakdowns(){
+
+  const list =
+    document.getElementById("breakdownList");
+
+  if(breakdowns.length === 0){
+
+    list.innerHTML =
+      `<div class="empty">
+        No breakdown reports.
+      </div>`;
+
+    return;
+  }
+
+  list.innerHTML="";
+
+  breakdowns.forEach(item => {
+
+    list.innerHTML += `
+
+      <div class="card" style="margin-bottom:10px">
+
+        <strong>${item.machine}</strong>
+
+        <p style="margin:8px 0">
+          🚨 ${item.problem}
+        </p>
+
+        <small>${item.date}</small>
+
+        <br><br>
+
+        <button
+          class="btn-red"
+          onclick="deleteBreakdown(${item.id})">
+          Delete Report
+        </button>
+
+      </div>
+
+    `;
+
+  });
+
+}
+
+
+/* =========================
+   DELETE BREAKDOWN
+========================= */
+
+function deleteBreakdown(id){
+
+  breakdowns =
+    breakdowns.filter(
+      item => item.id !== id
+    );
+
+  saveData();
+
+  renderBreakdowns();
+
+}
+
+
+/* =========================
+   RENDER EVERYTHING
+========================= */
+
+function renderAll(){
+
+  renderDashboard();
+
+  renderMachines();
+
+  renderServices();
+
+  renderBreakdowns();
+
+  updateMachineSelect();
+
+}
+
+
+/* =========================
+   START AMMS
+========================= */
+
+renderAll();
+
+</script>
+
 </body>
-  </html>
+    </html>
