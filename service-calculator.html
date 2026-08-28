@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AMMS - Service Calculator</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#f4f6f8;
+  color:#222;
+}
+
+header{
+  background:#111827;
+  color:white;
+  padding:22px;
+}
+
+header h1{
+  font-size:25px;
+}
+
+header p{
+  margin-top:6px;
+  color:#cbd5e1;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:14px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+  margin-bottom:20px;
+}
+
+.card h2{
+  margin-bottom:18px;
+}
+
+label{
+  display:block;
+  font-weight:bold;
+  margin-top:14px;
+  margin-bottom:6px;
+}
+
+input,
+select{
+  width:100%;
+  padding:13px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  font-size:16px;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:8px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:18px;
+}
+
+.btn-calculate{
+  background:#111827;
+  color:white;
+}
+
+.btn-clear{
+  background:#e5e7eb;
+  color:#111827;
+}
+
+.result{
+  text-align:center;
+  padding:25px;
+  border-radius:12px;
+  margin-top:20px;
+  display:none;
+}
+
+.result h3{
+  font-size:22px;
+  margin-bottom:12px;
+}
+
+.remaining{
+  font-size:38px;
+  font-weight:bold;
+  margin:10px 0;
+}
+
+.ok{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.soon{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.due{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.info{
+  background:#f8fafc;
+  padding:15px;
+  border-radius:10px;
+  margin-top:20px;
+}
+
+.info p{
+  margin:7px 0;
+}
+
+@media(max-width:600px){
+
+  .container{
+    padding:12px;
+  }
+
+  .card{
+    padding:16px;
+  }
+
+  .remaining{
+    font-size:32px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>AMMS</h1>
+  <p>Service Calculator</p>
+</header>
+
+<div class="container">
+
+  <div class="card">
+
+    <h2>Service Calculator</h2>
+
+    <label for="machine">
+      Machine
+    </label>
+
+    <input
+      type="text"
+      id="machine"
+      placeholder="Example: Komatsu PC220"
+    >
+
+    <label for="service">
+      Service Type
+    </label>
+
+    <select id="service">
+
+      <option value="">
+        Select Service
+      </option>
+
+      <option>
+        Engine Oil
+      </option>
+
+      <option>
+        Engine Oil Filter
+      </option>
+
+      <option>
+        Fuel Filter
+      </option>
+
+      <option>
+        Water Separator
+      </option>
+
+      <option>
+        Air Filter
+      </option>
+
+      <option>
+        Hydraulic Filter
+      </option>
+
+      <option>
+        Pilot Filter
+      </option>
+
+      <option>
+        Hydraulic Tank Breather
+      </option>
+
+      <option>
+        Final Drive Oil
+      </option>
+
+      <option>
+        Swing Gearbox Oil
+      </option>
+
+      <option>
+        Greasing
+      </option>
+
+      <option>
+        Other
+      </option>
+
+    </select>
+
+    <label for="currentHour">
+      Current Hour (H)
+    </label>
+
+    <input
+      type="number"
+      id="currentHour"
+      placeholder="Example: 1200"
+      min="0"
+      step="0.1"
+    >
+
+    <label for="nextService">
+      Next Service Due (H)
+    </label>
+
+    <input
+      type="number"
+      id="nextService"
+      placeholder="Example: 1450"
+      min="0"
+      step="0.1"
+    >
+
+    <button
+      class="btn-calculate"
+      onclick="calculateService()"
+    >
+      CALCULATE SERVICE
+    </button>
+
+    <button
+      class="btn-clear"
+      onclick="clearCalculator()"
+    >
+      CLEAR
+    </button>
+
+    <div
+      id="result"
+      class="result"
+    >
+
+      <h3 id="status"></h3>
+
+      <div
+        id="remaining"
+        class="remaining"
+      ></div>
+
+      <div class="info">
+
+        <p>
+          <strong>Machine:</strong>
+          <span id="resultMachine"></span>
+        </p>
+
+        <p>
+          <strong>Service:</strong>
+          <span id="resultService"></span>
+        </p>
+
+        <p>
+          <strong>Current Hour:</strong>
+          <span id="resultCurrent"></span> H
+        </p>
+
+        <p>
+          <strong>Next Service Due:</strong>
+          <span id="resultNext"></span> H
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+function calculateService(){
+
+  const machine =
+    document.getElementById("machine").value.trim();
+
+  const service =
+    document.getElementById("service").value;
+
+  const current =
+    Number(document.getElementById("currentHour").value);
+
+  const next =
+    Number(document.getElementById("nextService").value);
+
+  if(
+    !machine ||
+    !service ||
+    isNaN(current) ||
+    isNaN(next)
+  ){
+
+    alert(
+      "Please enter Machine, Service, Current Hour and Next Service Due."
+    );
+
+    return;
+  }
+
+  if(current < 0 || next < 0){
+
+    alert("Hours cannot be negative.");
+
+    return;
+  }
+
+  if(next <= current){
+
+    showResult(
+      "🔴 SERVICE DUE",
+      0,
+      "due",
+      machine,
+      service,
+      current,
+      next
+    );
+
+    return;
+  }
+
+  const remaining = next - current;
+
+  if(remaining <= 50){
+
+    showResult(
+      "🟡 SERVICE DUE SOON",
+      remaining,
+      "soon",
+      machine,
+      service,
+      current,
+      next
+    );
+
+  }else{
+
+    showResult(
+      "🟢 OK",
+      remaining,
+      "ok",
+      machine,
+      service,
+      current,
+      next
+    );
+
+  }
+
+}
+
+
+function showResult(
+  status,
+  remaining,
+  statusClass,
+  machine,
+  service,
+  current,
+  next
+){
+
+  const result =
+    document.getElementById("result");
+
+  result.className =
+    "result " + statusClass;
+
+  result.style.display = "block";
+
+  document.getElementById("status")
+    .textContent = status;
+
+  document.getElementById("remaining")
+    .textContent =
+    remaining.toLocaleString() + " H";
+
+  document.getElementById("resultMachine")
+    .textContent = machine;
+
+  document.getElementById("resultService")
+    .textContent = service;
+
+  document.getElementById("resultCurrent")
+    .textContent =
+    current.toLocaleString();
+
+  document.getElementById("resultNext")
+    .textContent =
+    next.toLocaleString();
+
+}
+
+
+function clearCalculator(){
+
+  document.getElementById("machine").value = "";
+
+  document.getElementById("service").value = "";
+
+  document.getElementById("currentHour").value = "";
+
+  document.getElementById("nextService").value = "";
+
+  const result =
+    document.getElementById("result");
+
+  result.style.display = "none";
+
+}
+
+</script>
+
+</body>
+  </html>
