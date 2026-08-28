@@ -1035,7 +1035,84 @@ function renderAll(){
 
 }
 
+<!-- =========================
+     SERVICE CALCULATOR
+========================= -->
 
+<section id="serviceCalculator" class="card">
+
+  <h2>🔧 Service Calculator</h2>
+
+  <label for="calcMachine">Machine</label>
+  <input
+    type="text"
+    id="calcMachine"
+    placeholder="e.g. Komatsu PC220"
+  >
+
+  <label for="calcService">Service</label>
+  <select id="calcService">
+    <option value="">Select Service</option>
+    <option value="250">250 Hours Service</option>
+    <option value="500">500 Hours Service</option>
+    <option value="1000">1000 Hours Service</option>
+    <option value="2000">2000 Hours Service</option>
+  </select>
+
+  <label for="calcCurrentHour">Current Hour</label>
+  <input
+    type="number"
+    id="calcCurrentHour"
+    placeholder="e.g. 1200"
+  >
+
+  <label for="calcNextService">Next Service Due</label>
+  <input
+    type="number"
+    id="calcNextService"
+    placeholder="e.g. 1450"
+  >
+
+  <button type="button" onclick="calculateService()">
+    Calculate Service
+  </button>
+
+  <button type="button" onclick="clearServiceCalculator()">
+    Clear
+  </button>
+
+  <div id="serviceCalcResult" style="display:none; margin-top:20px;">
+
+    <h3 id="calcStatus"></h3>
+
+    <p>
+      <strong>Machine:</strong>
+      <span id="calcResultMachine"></span>
+    </p>
+
+    <p>
+      <strong>Service:</strong>
+      <span id="calcResultService"></span>
+    </p>
+
+    <p>
+      <strong>Current Hour:</strong>
+      <span id="calcResultCurrent"></span> H
+    </p>
+
+    <p>
+      <strong>Next Service Due:</strong>
+      <span id="calcResultNext"></span> H
+    </p>
+
+    <p>
+      <strong>Remaining:</strong>
+      <span id="calcResultRemaining"></span> H
+    </p>
+
+  </div>
+
+</section>
 /* =========================
    START AMMS
 ========================= */
