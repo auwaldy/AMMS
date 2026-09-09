@@ -1,288 +1,916 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>AMMS Service Calculator</title>
+<title>AMMS - Auwal DY Maintenance Management System</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<style>
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-    body {
-      margin: 0;
-      background: #f4f6f8;
-      color: #222;
-    }
+body {
+    margin: 0;
+    background: #f4f6f8;
+    color: #222;
+}
 
-    header {
-      background: #111827;
-      color: white;
-      text-align: center;
-      padding: 25px 15px;
-    }
+header {
+    background: #111827;
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 25px;
-    }
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
 
-    header p {
-      margin: 8px 0 0;
-      color: #cbd5e1;
-    }
+header p {
+    margin: 8px 0 0;
+    color: #cbd5e1;
+}
 
-    .container {
-      max-width: 600px;
-      margin: 30px auto;
-      padding: 15px;
-    }
+.container {
+    max-width: 650px;
+    margin: 25px auto;
+    padding: 15px;
+}
 
-    .calculator {
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    }
+.card {
+    background: white;
+    padding: 22px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+}
 
-    .calculator h2 {
-      margin-top: 0;
-      text-align: center;
-    }
+h2 {
+    margin-top: 0;
+    text-align: center;
+}
 
-    label {
-      display: block;
-      margin-top: 15px;
-      margin-bottom: 6px;
-      font-weight: bold;
-    }
+label {
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
 
-    input {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-    }
+input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
 
-    button {
-      width: 100%;
-      padding: 14px;
-      margin-top: 20px;
-      border: none;
-      border-radius: 8px;
-      background: #2563eb;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 18px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-    button:hover {
-      opacity: 0.9;
-    }
+button:hover {
+    opacity: 0.9;
+}
 
-    #result {
-      display: none;
-      margin-top: 20px;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-    }
+.back-btn {
+    background: #6b7280;
+    margin-bottom: 18px;
+}
 
-    .ok {
-      background: #dcfce7;
-      color: #166534;
-    }
+.delete-btn {
+    background: #dc2626;
+    font-size: 14px;
+    padding: 10px;
+}
 
-    .soon {
-      background: #fef3c7;
-      color: #92400e;
-    }
+.machine-list {
+    margin-top: 15px;
+}
 
-    .due {
-      background: #fee2e2;
-      color: #991b1b;
-    }
+.machine-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    cursor: pointer;
+    border-left: 5px solid #2563eb;
+}
 
-    .remaining {
-      font-size: 30px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
+.machine-card:hover {
+    background: #f8fafc;
+}
 
-    footer {
-      text-align: center;
-      color: #777;
-      margin-top: 30px;
-      padding: 20px;
-    }
-  </style>
+.machine-number {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.machine-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #111827;
+}
+
+.machine-info {
+    font-size: 13px;
+    color: #6b7280;
+    margin-top: 5px;
+}
+
+.service-card {
+    background: white;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.service-card:hover {
+    background: #f8fafc;
+}
+
+.machine-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.machine-title h2 {
+    margin-bottom: 5px;
+}
+
+.small-info {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+#result {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.ok {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.soon {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.due {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.remaining {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.empty {
+    text-align: center;
+    color: #777;
+    padding: 20px;
+}
+
+footer {
+    text-align: center;
+    color: #777;
+    margin-top: 30px;
+    padding: 20px;
+}
+</style>
 </head>
 
 <body>
 
-  <header>
+<header>
     <h1>AMMS</h1>
     <p>Auwal DY Maintenance Management System</p>
-  </header>
+</header>
 
-  <div class="container">
+<div class="container">
 
-    <div class="calculator">
+    <!-- ========================= -->
+    <!-- MACHINE LIST PAGE -->
+    <!-- ========================= -->
 
-      <h2>🧮 Service Calculator</h2>
+    <div id="machinePage">
 
-      <label>Machine ID</label>
+        <div class="card">
 
-      <input
-        type="text"
-        id="machine"
-        placeholder="Example: PC300-01"
-      >
+            <h2>➕ Add Machine</h2>
 
-      <label>Current Hour</label>
+            <label>Machine Name</label>
+            <input
+                type="text"
+                id="machineName"
+                placeholder="Example: Excavator PC220"
+            >
 
-      <input
-        type="number"
-        id="currentHour"
-        placeholder="Example: 1450"
-      >
+            <label>Machine ID</label>
+            <input
+                type="text"
+                id="machineId"
+                placeholder="Example: PC220-01"
+            >
 
-      <label>Next Service Due</label>
+            <label>Plate Number</label>
+            <input
+                type="text"
+                id="plateNumber"
+                placeholder="Example: XYZ-123"
+            >
 
-      <input
-        type="number"
-        id="nextService"
-        placeholder="Example: 1500"
-      >
+            <button onclick="addMachine()">
+                💾 Save Machine
+            </button>
 
-      <button onclick="calculateService()">
-        Calculate Service
-      </button>
-
-      <div id="result">
-
-        <div id="status"></div>
-
-        <div
-          id="remaining"
-          class="remaining">
         </div>
 
-        <div id="message"></div>
+        <div class="card">
 
-      </div>
+            <h2>🚜 Machines</h2>
+
+            <div id="machineList" class="machine-list"></div>
+
+        </div>
 
     </div>
 
-  </div>
 
-  <footer>
+    <!-- ========================= -->
+    <!-- MACHINE DETAIL PAGE -->
+    <!-- ========================= -->
+
+    <div id="detailPage" style="display:none;">
+
+        <button class="back-btn" onclick="showMachines()">
+            ← Back to Machines
+        </button>
+
+        <div class="card">
+
+            <div class="machine-title">
+
+                <h2 id="detailMachineName"></h2>
+
+                <div class="small-info" id="detailMachineId"></div>
+
+                <div class="small-info" id="detailPlateNumber"></div>
+
+            </div>
+
+            <h2>🔧 Maintenance Services</h2>
+
+            <div
+                class="service-card"
+                onclick="openService('Engine Service')">
+                🔧 Engine Service
+            </div>
+
+            <div
+                class="service-card"
+                onclick="openService('Fuel System Service')">
+                ⛽ Fuel System Service
+            </div>
+
+            <div
+                class="service-card"
+                onclick="openService('Hydraulic System Service')">
+                💧 Hydraulic System Service
+            </div>
+
+            <div
+                class="service-card"
+                onclick="openService('Final Drive Service')">
+                ⚙️ Final Drive Service
+            </div>
+
+            <div
+                class="service-card"
+                onclick="openService('Swing Machinery Service')">
+                🔄 Swing Machinery Service
+            </div>
+
+            <div
+                class="service-card"
+                onclick="openService('Damper Case Service')">
+                🔩 Damper Case Service
+            </div>
+
+            <div
+                class="service-card"
+                onclick="openService('Cooling System Service')">
+                🌡️ Cooling System Service
+            </div>
+
+            <div
+                class="service-card"
+                onclick="openService('Transmission Service')">
+                ⚙️ Transmission Service
+            </div>
+
+            <div
+                class="service-card"
+                onclick="openService('Air Intake / Air Filter Service')">
+                🌬️ Air Intake / Air Filter Service
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- SERVICE CALCULATOR PAGE -->
+    <!-- ========================= -->
+
+    <div id="servicePage" style="display:none;">
+
+        <button class="back-btn" onclick="showDetail()">
+            ← Back to Services
+        </button>
+
+        <div class="card">
+
+            <h2 id="serviceTitle"></h2>
+
+            <div
+                class="small-info"
+                id="serviceMachineInfo"
+                style="text-align:center;">
+            </div>
+
+            <label>Current Hour</label>
+
+            <input
+                type="number"
+                id="currentHour"
+                placeholder="Example: 1450"
+            >
+
+            <label>Next Service Due</label>
+
+            <input
+                type="number"
+                id="nextService"
+                placeholder="Example: 1500"
+            >
+
+            <button onclick="calculateService()">
+                🧮 Calculate Service
+            </button>
+
+            <div id="result">
+
+                <div id="status"></div>
+
+                <div
+                    id="remaining"
+                    class="remaining">
+                </div>
+
+                <div id="message"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
     AMMS © Auwal DY
-  </footer>
+</footer>
 
 
-  <script>
+<script>
 
-    function calculateService() {
+/* =====================================
+   DATA
+===================================== */
 
-      const machine =
-        document.getElementById("machine").value.trim();
+let machines = JSON.parse(
+    localStorage.getItem("ammsMachines")
+) || [];
 
-      const current =
-        Number(
-          document.getElementById("currentHour").value
-        );
+let selectedMachineIndex = null;
 
-      const next =
-        Number(
-          document.getElementById("nextService").value
-        );
-
-      const result =
-        document.getElementById("result");
-
-      const status =
-        document.getElementById("status");
-
-      const remaining =
-        document.getElementById("remaining");
-
-      const message =
-        document.getElementById("message");
+let selectedService = null;
 
 
-      if (!machine || isNaN(current) || isNaN(next)) {
+/* =====================================
+   SAVE MACHINES
+===================================== */
+
+function saveMachines() {
+
+    localStorage.setItem(
+        "ammsMachines",
+        JSON.stringify(machines)
+    );
+
+}
+
+
+/* =====================================
+   ADD MACHINE
+===================================== */
+
+function addMachine() {
+
+    const name =
+        document.getElementById("machineName")
+        .value
+        .trim();
+
+    const id =
+        document.getElementById("machineId")
+        .value
+        .trim();
+
+    const plate =
+        document.getElementById("plateNumber")
+        .value
+        .trim();
+
+
+    if (!name || !id) {
 
         alert(
-          "Please enter Machine ID, Current Hour and Next Service."
+            "Please enter Machine Name and Machine ID."
         );
 
         return;
-      }
-
-
-      const hoursLeft = next - current;
-
-
-      result.style.display = "block";
-
-
-      if (hoursLeft <= 0) {
-
-        result.className = "due";
-
-        status.innerHTML =
-          "🔴 SERVICE DUE";
-
-        remaining.innerHTML =
-          Math.abs(hoursLeft) + " H OVERDUE";
-
-        message.innerHTML =
-          machine +
-          " has reached or passed the service hour.";
-
-      }
-
-      else if (hoursLeft <= 50) {
-
-        result.className = "soon";
-
-        status.innerHTML =
-          "🟡 SERVICE DUE SOON";
-
-        remaining.innerHTML =
-          hoursLeft + " H REMAINING";
-
-        message.innerHTML =
-          machine +
-          " is approaching the service hour.";
-
-      }
-
-      else {
-
-        result.className = "ok";
-
-        status.innerHTML =
-          "🟢 OK";
-
-        remaining.innerHTML =
-          hoursLeft + " H REMAINING";
-
-        message.innerHTML =
-          machine +
-          " has enough hours before service.";
-
-      }
 
     }
 
-  </script>
+
+    const machine = {
+
+        name: name,
+
+        id: id,
+
+        plate: plate,
+
+        services: {}
+
+    };
+
+
+    machines.push(machine);
+
+    saveMachines();
+
+    document.getElementById("machineName").value = "";
+
+    document.getElementById("machineId").value = "";
+
+    document.getElementById("plateNumber").value = "";
+
+
+    displayMachines();
+
+}
+
+
+/* =====================================
+   DISPLAY MACHINES
+===================================== */
+
+function displayMachines() {
+
+    const list =
+        document.getElementById("machineList");
+
+
+    list.innerHTML = "";
+
+
+    if (machines.length === 0) {
+
+        list.innerHTML =
+            '<div class="empty">No machines saved yet.</div>';
+
+        return;
+
+    }
+
+
+    machines.forEach(function(machine, index) {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "machine-card";
+
+
+        card.onclick = function() {
+
+            openMachine(index);
+
+        };
+
+
+        card.innerHTML = `
+
+            <div class="machine-number">
+                Machine ${index + 1}
+            </div>
+
+            <div class="machine-name">
+                ${machine.name}
+            </div>
+
+            <div class="machine-info">
+                Machine ID: ${machine.id}
+            </div>
+
+            <div class="machine-info">
+                Plate Number: ${machine.plate || "Not entered"}
+            </div>
+
+        `;
+
+
+        list.appendChild(card);
+
+    });
+
+}
+
+
+/* =====================================
+   OPEN MACHINE
+===================================== */
+
+function openMachine(index) {
+
+    selectedMachineIndex = index;
+
+
+    const machine =
+        machines[index];
+
+
+    document.getElementById(
+        "detailMachineName"
+    ).innerText = machine.name;
+
+
+    document.getElementById(
+        "detailMachineId"
+    ).innerText =
+        "Machine ID: " + machine.id;
+
+
+    document.getElementById(
+        "detailPlateNumber"
+    ).innerText =
+        "Plate Number: " +
+        (machine.plate || "Not entered");
+
+
+    document.getElementById(
+        "machinePage"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "detailPage"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "servicePage"
+    ).style.display = "none";
+
+}
+
+
+/* =====================================
+   OPEN SERVICE
+===================================== */
+
+function openService(serviceName) {
+
+    selectedService = serviceName;
+
+
+    const machine =
+        machines[selectedMachineIndex];
+
+
+    document.getElementById(
+        "serviceTitle"
+    ).innerText = serviceName;
+
+
+    document.getElementById(
+        "serviceMachineInfo"
+    ).innerText =
+        machine.name +
+        " | " +
+        machine.id;
+
+
+    document.getElementById(
+        "detailPage"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "servicePage"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "currentHour"
+    ).value = "";
+
+
+    document.getElementById(
+        "nextService"
+    ).value = "";
+
+
+    document.getElementById(
+        "result"
+    ).style.display = "none";
+
+
+    /* Load saved service data */
+
+    const saved =
+        machine.services[serviceName];
+
+
+    if (saved) {
+
+        document.getElementById(
+            "currentHour"
+        ).value = saved.currentHour;
+
+
+        document.getElementById(
+            "nextService"
+        ).value = saved.nextService;
+
+    }
+
+}
+
+
+/* =====================================
+   CALCULATE SERVICE
+===================================== */
+
+function calculateService() {
+
+    const current =
+        Number(
+            document.getElementById(
+                "currentHour"
+            ).value
+        );
+
+
+    const next =
+        Number(
+            document.getElementById(
+                "nextService"
+            ).value
+        );
+
+
+    const result =
+        document.getElementById(
+            "result"
+        );
+
+
+    const status =
+        document.getElementById(
+            "status"
+        );
+
+
+    const remaining =
+        document.getElementById(
+            "remaining"
+        );
+
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    if (
+        isNaN(current) ||
+        isNaN(next)
+    ) {
+
+        alert(
+            "Please enter Current Hour and Next Service Due."
+        );
+
+        return;
+
+    }
+
+
+    if (next < current) {
+
+        /* Still calculate as overdue */
+
+    }
+
+
+    const hoursLeft =
+        next - current;
+
+
+    /* =================================
+       SAVE SERVICE DATA
+    ================================= */
+
+    const machine =
+        machines[selectedMachineIndex];
+
+
+    machine.services[selectedService] = {
+
+        currentHour: current,
+
+        nextService: next
+
+    };
+
+
+    saveMachines();
+
+
+    result.style.display = "block";
+
+
+    /* =================================
+       STATUS
+    ================================= */
+
+    if (hoursLeft <= 0) {
+
+        result.className = "due";
+
+
+        status.innerHTML =
+            "🔴 SERVICE DUE";
+
+
+        remaining.innerHTML =
+            Math.abs(hoursLeft) +
+            " H OVERDUE";
+
+
+        message.innerHTML =
+            machine.name +
+            " - " +
+            selectedService +
+            " has reached or passed the service hour.";
+
+    }
+
+    else if (hoursLeft <= 50) {
+
+        result.className = "soon";
+
+
+        status.innerHTML =
+            "🟡 SERVICE DUE SOON";
+
+
+        remaining.innerHTML =
+            hoursLeft +
+            " H REMAINING";
+
+
+        message.innerHTML =
+            machine.name +
+            " - " +
+            selectedService +
+            " is approaching the service hour.";
+
+    }
+
+    else {
+
+        result.className = "ok";
+
+
+        status.innerHTML =
+            "🟢 OK";
+
+
+        remaining.innerHTML =
+            hoursLeft +
+            " H REMAINING";
+
+
+        message.innerHTML =
+            machine.name +
+            " - " +
+            selectedService +
+            " has enough hours before service.";
+
+    }
+
+}
+
+
+/* =====================================
+   BACK TO MACHINES
+===================================== */
+
+function showMachines() {
+
+    document.getElementById(
+        "machinePage"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "detailPage"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "servicePage"
+    ).style.display = "none";
+
+
+    displayMachines();
+
+}
+
+
+/* =====================================
+   BACK TO MACHINE DETAIL
+===================================== */
+
+function showDetail() {
+
+    document.getElementById(
+        "machinePage"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "detailPage"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "servicePage"
+    ).style.display = "none";
+
+}
+
+
+/* =====================================
+   START APP
+===================================== */
+
+displayMachines();
+
+</script>
 
 </body>
 </html>
