@@ -91,6 +91,10 @@ button:hover {
     margin-bottom: 18px;
 }
 
+.update-btn {
+    background: #059669;
+}
+
 .machine-list {
     margin-top: 15px;
 }
@@ -154,6 +158,22 @@ button:hover {
 .small-info {
     color: #6b7280;
     font-size: 13px;
+    margin-top: 4px;
+}
+
+.current-hour-box {
+    background: #eff6ff;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.current-hour-number {
+    font-size: 30px;
+    font-weight: bold;
+    color: #2563eb;
+    margin-top: 5px;
 }
 
 #result {
@@ -209,7 +229,9 @@ footer {
 
 <div class="container">
 
-    <!-- MACHINE PAGE -->
+    <!-- =========================
+         MACHINE PAGE
+    ========================== -->
 
     <div id="machinePage">
 
@@ -218,6 +240,7 @@ footer {
             <h2>➕ Add Machine</h2>
 
             <label>Machine Name</label>
+
             <input
                 type="text"
                 id="machineName"
@@ -225,6 +248,7 @@ footer {
             >
 
             <label>Machine ID</label>
+
             <input
                 type="text"
                 id="machineId"
@@ -232,10 +256,19 @@ footer {
             >
 
             <label>Plate Number</label>
+
             <input
                 type="text"
                 id="plateNumber"
                 placeholder="Example: XYZ-123"
+            >
+
+            <label>Current Machine Hour</label>
+
+            <input
+                type="number"
+                id="machineHour"
+                placeholder="Example: 500"
             >
 
             <button onclick="addMachine()">
@@ -243,6 +276,7 @@ footer {
             </button>
 
         </div>
+
 
         <div class="card">
 
@@ -255,13 +289,18 @@ footer {
     </div>
 
 
-    <!-- MACHINE DETAIL PAGE -->
+    <!-- =========================
+         MACHINE DETAIL PAGE
+    ========================== -->
 
     <div id="detailPage" style="display:none;">
 
-        <button class="back-btn" onclick="showMachines()">
+        <button
+            class="back-btn"
+            onclick="showMachines()">
             ← Back to Machines
         </button>
+
 
         <div class="card">
 
@@ -269,56 +308,104 @@ footer {
 
                 <h2 id="detailMachineName"></h2>
 
-                <div class="small-info" id="detailMachineId"></div>
+                <div
+                    class="small-info"
+                    id="detailMachineId">
+                </div>
 
-                <div class="small-info" id="detailPlateNumber"></div>
+                <div
+                    class="small-info"
+                    id="detailPlateNumber">
+                </div>
 
             </div>
+
+
+            <!-- CURRENT MACHINE HOUR -->
+
+            <div class="current-hour-box">
+
+                <div>
+                    Current Machine Hour
+                </div>
+
+                <div
+                    class="current-hour-number"
+                    id="detailCurrentHour">
+                    0 H
+                </div>
+
+                <button
+                    class="update-btn"
+                    onclick="openUpdateHour()">
+                    🔄 Update Current Hour
+                </button>
+
+            </div>
+
 
             <h2>🔧 Maintenance Services</h2>
 
-            <div class="service-card"
-                 onclick="openService('Engine Service')">
+
+            <div
+                class="service-card"
+                onclick="openService('Engine Service')">
                 🔧 Engine Service
             </div>
 
-            <div class="service-card"
-                 onclick="openService('Fuel System Service')">
+
+            <div
+                class="service-card"
+                onclick="openService('Fuel System Service')">
                 ⛽ Fuel System Service
             </div>
 
-            <div class="service-card"
-                 onclick="openService('Hydraulic System Service')">
+
+            <div
+                class="service-card"
+                onclick="openService('Hydraulic System Service')">
                 💧 Hydraulic System Service
             </div>
 
-            <div class="service-card"
-                 onclick="openService('Final Drive Service')">
+
+            <div
+                class="service-card"
+                onclick="openService('Final Drive Service')">
                 ⚙️ Final Drive Service
             </div>
 
-            <div class="service-card"
-                 onclick="openService('Swing Machinery Service')">
+
+            <div
+                class="service-card"
+                onclick="openService('Swing Machinery Service')">
                 🔄 Swing Machinery Service
             </div>
 
-            <div class="service-card"
-                 onclick="openService('Damper Case Service')">
+
+            <div
+                class="service-card"
+                onclick="openService('Damper Case Service')">
                 🔩 Damper Case Service
             </div>
 
-            <div class="service-card"
-                 onclick="openService('Cooling System Service')">
+
+            <div
+                class="service-card"
+                onclick="openService('Cooling System Service')">
                 🌡️ Cooling System Service
             </div>
 
-            <div class="service-card"
-                 onclick="openService('Transmission Service')">
+
+            <div
+                class="service-card"
+                onclick="openService('Transmission Service')">
                 ⚙️ Transmission Service
             </div>
 
-            <div class="service-card"
-                 onclick="openService('Air Intake / Air Filter Service')">
+
+            <div
+                class="service-card"
+                onclick="openService('Air Intake / Air Filter Service')">
                 🌬️ Air Intake / Air Filter Service
             </div>
 
@@ -327,23 +414,74 @@ footer {
     </div>
 
 
-    <!-- SERVICE CALCULATOR PAGE -->
+    <!-- =========================
+         UPDATE HOUR PAGE
+    ========================== -->
+
+    <div id="updateHourPage" style="display:none;">
+
+        <button
+            class="back-btn"
+            onclick="showDetail()">
+            ← Back to Machine
+        </button>
+
+
+        <div class="card">
+
+            <h2>🔄 Update Current Hour</h2>
+
+            <div
+                class="small-info"
+                id="updateMachineInfo"
+                style="text-align:center;">
+            </div>
+
+
+            <label>New Current Machine Hour</label>
+
+            <input
+                type="number"
+                id="newMachineHour"
+                placeholder="Example: 620"
+            >
+
+
+            <button
+                class="update-btn"
+                onclick="updateMachineHour()">
+                💾 Update Machine Hour
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SERVICE CALCULATOR PAGE
+    ========================== -->
 
     <div id="servicePage" style="display:none;">
 
-        <button class="back-btn" onclick="showDetail()">
+        <button
+            class="back-btn"
+            onclick="showDetail()">
             ← Back to Services
         </button>
+
 
         <div class="card">
 
             <h2 id="serviceTitle"></h2>
+
 
             <div
                 class="small-info"
                 id="serviceMachineInfo"
                 style="text-align:center;">
             </div>
+
 
             <label>Current Hour</label>
 
@@ -353,6 +491,7 @@ footer {
                 placeholder="Example: 1450"
             >
 
+
             <label>Next Service Due</label>
 
             <input
@@ -361,16 +500,19 @@ footer {
                 placeholder="Example: 1500"
             >
 
+
             <button onclick="calculateService()">
                 🧮 Calculate Service
             </button>
+
 
             <div id="result">
 
                 <div id="status"></div>
 
-                <div id="remaining"
-                     class="remaining">
+                <div
+                    id="remaining"
+                    class="remaining">
                 </div>
 
                 <div id="message"></div>
@@ -383,6 +525,7 @@ footer {
 
 </div>
 
+
 <footer>
     AMMS © Auwal DY
 </footer>
@@ -391,7 +534,7 @@ footer {
 <script>
 
 /* =========================================
-   LOAD SAVED MACHINES
+   LOAD MACHINES
 ========================================= */
 
 let machines =
@@ -399,13 +542,14 @@ let machines =
         localStorage.getItem("ammsMachines")
     ) || [];
 
+
 let selectedMachineIndex = null;
 
 let selectedService = null;
 
 
 /* =========================================
-   SAVE DATA
+   SAVE MACHINES
 ========================================= */
 
 function saveMachines() {
@@ -430,11 +574,13 @@ function addMachine() {
         .value
         .trim();
 
+
     const id =
         document
         .getElementById("machineId")
         .value
         .trim();
+
 
     const plate =
         document
@@ -443,10 +589,33 @@ function addMachine() {
         .trim();
 
 
+    const hourValue =
+        document
+        .getElementById("machineHour")
+        .value;
+
+
+    const hour =
+        hourValue === ""
+            ? 0
+            : Number(hourValue);
+
+
     if (!name || !id) {
 
         alert(
             "Please enter Machine Name and Machine ID."
+        );
+
+        return;
+
+    }
+
+
+    if (hour < 0 || isNaN(hour)) {
+
+        alert(
+            "Please enter a valid machine hour."
         );
 
         return;
@@ -462,12 +631,15 @@ function addMachine() {
 
         plate: plate,
 
+        currentHour: hour,
+
         services: {}
 
     };
 
 
     machines.push(machine);
+
 
     saveMachines();
 
@@ -484,6 +656,11 @@ function addMachine() {
 
     document.getElementById(
         "plateNumber"
+    ).value = "";
+
+
+    document.getElementById(
+        "machineHour"
     ).value = "";
 
 
@@ -555,6 +732,11 @@ function displayMachines() {
                     ${machine.plate || "Not entered"}
                 </div>
 
+                <div class="machine-info">
+                    Current Hour:
+                    ${machine.currentHour || 0} H
+                </div>
+
             `;
 
 
@@ -603,6 +785,14 @@ function openMachine(index) {
 
 
     document.getElementById(
+        "detailCurrentHour"
+    ).innerText =
+        (
+            machine.currentHour || 0
+        ) + " H";
+
+
+    document.getElementById(
         "machinePage"
     ).style.display =
         "none";
@@ -618,6 +808,239 @@ function openMachine(index) {
         "servicePage"
     ).style.display =
         "none";
+
+
+    document.getElementById(
+        "updateHourPage"
+    ).style.display =
+        "none";
+
+}
+
+
+/* =========================================
+   OPEN UPDATE HOUR
+========================================= */
+
+function openUpdateHour() {
+
+    const machine =
+        machines[
+            selectedMachineIndex
+        ];
+
+
+    document.getElementById(
+        "updateMachineInfo"
+    ).innerText =
+        machine.name +
+        " | " +
+        machine.id;
+
+
+    document.getElementById(
+        "newMachineHour"
+    ).value =
+        machine.currentHour || "";
+
+
+    document.getElementById(
+        "detailPage"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "updateHourPage"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "servicePage"
+    ).style.display =
+        "none";
+
+}
+
+
+/* =========================================
+   UPDATE MACHINE HOUR
+========================================= */
+
+function updateMachineHour() {
+
+    const value =
+        document.getElementById(
+            "newMachineHour"
+        ).value;
+
+
+    const newHour =
+        Number(value);
+
+
+    if (
+        value === "" ||
+        isNaN(newHour) ||
+        newHour < 0
+    ) {
+
+        alert(
+            "Please enter a valid machine hour."
+        );
+
+        return;
+
+    }
+
+
+    const machine =
+        machines[
+            selectedMachineIndex
+        ];
+
+
+    machine.currentHour =
+        newHour;
+
+
+    /*
+       UPDATE EVERY SAVED SERVICE
+       WITH THE NEW CURRENT HOUR
+    */
+
+    Object.keys(
+        machine.services
+    ).forEach(
+        function(serviceName) {
+
+            const service =
+                machine.services[
+                    serviceName
+                ];
+
+
+            if (
+                service &&
+                service.nextService !== undefined
+            ) {
+
+                const hoursLeft =
+                    service.nextService -
+                    newHour;
+
+
+                let statusType = "";
+
+                let statusText = "";
+
+                let remainingText = "";
+
+                let messageText = "";
+
+
+                if (hoursLeft <= 0) {
+
+                    statusType =
+                        "due";
+
+                    statusText =
+                        "🔴 SERVICE DUE";
+
+                    remainingText =
+                        Math.abs(hoursLeft) +
+                        " H OVERDUE";
+
+                    messageText =
+                        machine.name +
+                        " - " +
+                        serviceName +
+                        " has reached or passed the service hour.";
+
+                }
+
+                else if (hoursLeft <= 50) {
+
+                    statusType =
+                        "soon";
+
+                    statusText =
+                        "🟡 SERVICE DUE SOON";
+
+                    remainingText =
+                        hoursLeft +
+                        " H REMAINING";
+
+                    messageText =
+                        machine.name +
+                        " - " +
+                        serviceName +
+                        " is approaching the service hour.";
+
+                }
+
+                else {
+
+                    statusType =
+                        "ok";
+
+                    statusText =
+                        "🟢 OK";
+
+                    remainingText =
+                        hoursLeft +
+                        " H REMAINING";
+
+                    messageText =
+                        machine.name +
+                        " - " +
+                        serviceName +
+                        " has enough hours before service.";
+
+                }
+
+
+                service.currentHour =
+                    newHour;
+
+
+                service.hoursLeft =
+                    hoursLeft;
+
+
+                service.statusType =
+                    statusType;
+
+
+                service.statusText =
+                    statusText;
+
+
+                service.remainingText =
+                    remainingText;
+
+
+                service.messageText =
+                    messageText;
+
+            }
+
+        }
+    );
+
+
+    saveMachines();
+
+
+    openMachine(
+        selectedMachineIndex
+    );
+
+
+    alert(
+        "Machine hour updated successfully."
+    );
 
 }
 
@@ -664,16 +1087,21 @@ function openService(serviceName) {
         "block";
 
 
-    /*
-       Check if this service
-       already has saved data
-    */
+    document.getElementById(
+        "updateHourPage"
+    ).style.display =
+        "none";
+
 
     const saved =
         machine.services[
             serviceName
         ];
 
+
+    /*
+       IF SERVICE ALREADY EXISTS
+    */
 
     if (saved) {
 
@@ -689,20 +1117,22 @@ function openService(serviceName) {
             saved.nextService;
 
 
-        /*
-           SHOW SAVED RESULT
-        */
-
         showSavedResult(saved);
 
     }
+
+
+    /*
+       IF SERVICE HAS NEVER
+       BEEN SAVED
+    */
 
     else {
 
         document.getElementById(
             "currentHour"
         ).value =
-            "";
+            machine.currentHour || "";
 
 
         document.getElementById(
@@ -723,286 +1153,3 @@ function openService(serviceName) {
 
 /* =========================================
    CALCULATE SERVICE
-========================================= */
-
-function calculateService() {
-
-    const current =
-        Number(
-            document.getElementById(
-                "currentHour"
-            ).value
-        );
-
-
-    const next =
-        Number(
-            document.getElementById(
-                "nextService"
-            ).value
-        );
-
-
-    if (
-        isNaN(current) ||
-        isNaN(next)
-    ) {
-
-        alert(
-            "Please enter Current Hour and Next Service Due."
-        );
-
-        return;
-
-    }
-
-
-    const hoursLeft =
-        next - current;
-
-
-    const machine =
-        machines[
-            selectedMachineIndex
-        ];
-
-
-    /*
-       DETERMINE STATUS
-    */
-
-    let statusType = "";
-
-    let statusText = "";
-
-    let remainingText = "";
-
-    let messageText = "";
-
-
-    if (hoursLeft <= 0) {
-
-        statusType =
-            "due";
-
-        statusText =
-            "🔴 SERVICE DUE";
-
-        remainingText =
-            Math.abs(hoursLeft) +
-            " H OVERDUE";
-
-        messageText =
-            machine.name +
-            " - " +
-            selectedService +
-            " has reached or passed the service hour.";
-
-    }
-
-    else if (hoursLeft <= 50) {
-
-        statusType =
-            "soon";
-
-        statusText =
-            "🟡 SERVICE DUE SOON";
-
-        remainingText =
-            hoursLeft +
-            " H REMAINING";
-
-        messageText =
-            machine.name +
-            " - " +
-            selectedService +
-            " is approaching the service hour.";
-
-    }
-
-    else {
-
-        statusType =
-            "ok";
-
-        statusText =
-            "🟢 OK";
-
-        remainingText =
-            hoursLeft +
-            " H REMAINING";
-
-        messageText =
-            machine.name +
-            " - " +
-            selectedService +
-            " has enough hours before service.";
-
-    }
-
-
-    /*
-       SAVE EVERYTHING
-    */
-
-    machine.services[
-        selectedService
-    ] = {
-
-        currentHour:
-            current,
-
-        nextService:
-            next,
-
-        hoursLeft:
-            hoursLeft,
-
-        statusType:
-            statusType,
-
-        statusText:
-            statusText,
-
-        remainingText:
-            remainingText,
-
-        messageText:
-            messageText
-
-    };
-
-
-    saveMachines();
-
-
-    /*
-       SHOW RESULT
-    */
-
-    showSavedResult(
-        machine.services[
-            selectedService
-        ]
-    );
-
-}
-
-
-/* =========================================
-   SHOW SAVED RESULT
-========================================= */
-
-function showSavedResult(saved) {
-
-    const result =
-        document.getElementById(
-            "result"
-        );
-
-
-    const status =
-        document.getElementById(
-            "status"
-        );
-
-
-    const remaining =
-        document.getElementById(
-            "remaining"
-        );
-
-
-    const message =
-        document.getElementById(
-            "message"
-        );
-
-
-    result.className =
-        saved.statusType;
-
-
-    status.innerHTML =
-        saved.statusText;
-
-
-    remaining.innerHTML =
-        saved.remainingText;
-
-
-    message.innerHTML =
-        saved.messageText;
-
-
-    result.style.display =
-        "block";
-
-}
-
-
-/* =========================================
-   BACK TO MACHINES
-========================================= */
-
-function showMachines() {
-
-    document.getElementById(
-        "machinePage"
-    ).style.display =
-        "block";
-
-
-    document.getElementById(
-        "detailPage"
-    ).style.display =
-        "none";
-
-
-    document.getElementById(
-        "servicePage"
-    ).style.display =
-        "none";
-
-
-    displayMachines();
-
-}
-
-
-/* =========================================
-   BACK TO MACHINE SERVICES
-========================================= */
-
-function showDetail() {
-
-    document.getElementById(
-        "machinePage"
-    ).style.display =
-        "none";
-
-
-    document.getElementById(
-        "detailPage"
-    ).style.display =
-        "block";
-
-
-    document.getElementById(
-        "servicePage"
-    ).style.display =
-        "none";
-
-}
-
-
-/* =========================================
-   START
-========================================= */
-
-displayMachines();
-
-</script>
-
-</body>
-</html>
