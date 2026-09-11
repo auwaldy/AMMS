@@ -312,17 +312,16 @@ footer{
              CONTINUE DOES NOT USE SAVING
         -->
 
-        <button
-            type="button"
-            class="green-btn"
-            onclick="continueToServices()"
-        >
-            CONTINUE →
-        </button>
-
-    </div>
-
-</div>
+      <button
+type="button"
+class="green-btn"
+onclick="
+document.getElementById('machinePage').style.display='none';
+document.getElementById('serviceListPage').style.display='block';
+"
+>
+CONTINUE →
+</button>
 
 
 <!-- =========================
