@@ -349,12 +349,15 @@ placeholder="Example: 2450"
 
 
 <button
-onclick="continueMachine()"
+type="button"
 class="green-btn"
+onclick="
+document.getElementById('machinePage').style.display='none';
+document.getElementById('serviceListPage').style.display='block';
+"
 >
 CONTINUE →
 </button>
-
 </div>
 
 
