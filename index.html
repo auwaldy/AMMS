@@ -9,12 +9,11 @@
 <style>
 *{
   box-sizing:border-box;
-  margin:0;
-  padding:0;
 }
 
 body{
-  font-family:Arial, sans-serif;
+  margin:0;
+  font-family:Arial,sans-serif;
   background:#f3f4f6;
   color:#111827;
 }
@@ -22,58 +21,68 @@ body{
 header{
   background:#111827;
   color:white;
-  padding:20px 15px;
   text-align:center;
+  padding:20px 10px;
 }
 
 header h1{
-  font-size:24px;
+  margin:0;
+  font-size:25px;
 }
 
 header p{
-  margin-top:5px;
+  margin:5px 0 0;
   color:#d1d5db;
   font-size:13px;
 }
 
 .container{
-  max-width:600px;
+  width:100%;
+  max-width:620px;
   margin:auto;
   padding:18px;
 }
 
 .card{
   background:white;
-  border-radius:14px;
-  padding:18px;
+  border-radius:15px;
+  padding:20px;
   margin-bottom:15px;
   box-shadow:0 3px 12px rgba(0,0,0,.08);
 }
 
+.hidden{
+  display:none !important;
+}
+
 h2{
-  margin-bottom:15px;
-  font-size:20px;
+  margin:0 0 16px;
+  font-size:21px;
 }
 
 h3{
+  margin:0 0 6px;
   font-size:17px;
-  margin-bottom:7px;
 }
 
 label{
   display:block;
-  margin-top:12px;
-  margin-bottom:6px;
-  font-weight:bold;
+  margin:13px 0 6px;
   font-size:14px;
+  font-weight:bold;
 }
 
 input{
   width:100%;
-  padding:13px;
+  padding:14px;
   border:1px solid #d1d5db;
-  border-radius:9px;
+  border-radius:10px;
   font-size:16px;
+  outline:none;
+}
+
+input:focus{
+  border-color:#2563eb;
 }
 
 button{
@@ -92,25 +101,25 @@ button{
   margin-top:18px;
 }
 
+.blue-btn{
+  background:#2563eb;
+  color:white;
+  margin-top:18px;
+}
+
 .back-btn{
   background:#374151;
   color:white;
   margin-bottom:15px;
 }
 
-.blue-btn{
-  background:#2563eb;
-  color:white;
-  margin-top:12px;
-}
-
 .service-card{
-  background:white;
-  border-radius:14px;
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:13px;
   padding:17px;
   margin-bottom:12px;
-  box-shadow:0 3px 10px rgba(0,0,0,.07);
-  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
 }
 
 .service-card:active{
@@ -118,111 +127,121 @@ button{
 }
 
 .service-card p{
+  margin:0;
   color:#6b7280;
   font-size:13px;
 }
 
 .info{
-  background:#f9fafb;
-  padding:12px;
+  background:#f8fafc;
   border-radius:10px;
+  padding:13px;
+  line-height:1.8;
   margin-bottom:15px;
-  line-height:1.7;
-}
-
-.gauge-area{
-  text-align:center;
-  margin:20px 0;
-}
-
-.gauge{
-  width:190px;
-  height:190px;
-  border-radius:50%;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  background:#e5e7eb;
-}
-
-.gauge::before{
-  content:"";
-  width:145px;
-  height:145px;
-  background:white;
-  border-radius:50%;
-  position:absolute;
-}
-
-.gauge-text{
-  position:relative;
-  z-index:2;
-  text-align:center;
-}
-
-.gauge-text strong{
-  display:block;
-  font-size:35px;
-}
-
-.gauge-text span{
-  font-size:13px;
-  color:#6b7280;
 }
 
 .reading{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
+  margin-top:10px;
 }
 
 .reading-box{
-  background:#f9fafb;
+  background:#f8fafc;
   border-radius:10px;
-  padding:13px;
+  padding:14px 8px;
   text-align:center;
+}
+
+.reading-box span{
+  font-size:14px;
 }
 
 .reading-box strong{
   display:block;
-  font-size:20px;
   margin-top:5px;
+  font-size:19px;
 }
 
+
+/* ================= GAUGE ================= */
+
+.gauge-area{
+  text-align:center;
+  margin:25px 0;
+}
+
+.gauge{
+  width:190px;
+  height:190px;
+  margin:auto;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  background:conic-gradient(
+    #16a34a 100%,
+    #e5e7eb 100%
+  );
+}
+
+.gauge::before{
+  content:"";
+  position:absolute;
+  width:145px;
+  height:145px;
+  background:white;
+  border-radius:50%;
+}
+
+.gauge-text{
+  position:relative;
+  z-index:2;
+}
+
+.gauge-text strong{
+  display:block;
+  font-size:36px;
+}
+
+.gauge-text span{
+  color:#6b7280;
+  font-size:13px;
+}
+
+
+/* ================= STATUS ================= */
+
 .status{
+  margin-top:15px;
   padding:15px;
   border-radius:10px;
   text-align:center;
   font-weight:bold;
-  margin-top:15px;
 }
 
-.green{
+.status.green{
   background:#dcfce7;
   color:#166534;
 }
 
-.yellow{
+.status.yellow{
   background:#fef9c3;
   color:#854d0e;
 }
 
-.red{
+.status.red{
   background:#fee2e2;
   color:#991b1b;
 }
 
-.hidden{
-  display:none !important;
-}
-
 footer{
   text-align:center;
-  padding:25px 10px;
   color:#6b7280;
   font-size:12px;
+  padding:25px 10px;
 }
 </style>
 </head>
@@ -235,93 +254,173 @@ footer{
 </header>
 
 
-<!-- ================= ADD MACHINE ================= -->
+<!-- =====================================================
+     ADD MACHINE
+===================================================== -->
 
 <section id="machinePage">
+
   <div class="container">
 
     <div class="card">
+
       <h2>Add Machine</h2>
 
       <label>Machine Name</label>
-      <input id="machineName" type="text" placeholder="e.g. Excavator 01">
+      <input
+        id="machineName"
+        type="text"
+        placeholder="e.g. Excavator 01"
+      >
 
       <label>Machine Model / ID</label>
-      <input id="machineModel" type="text" placeholder="e.g. PC220-8">
+      <input
+        id="machineModel"
+        type="text"
+        placeholder="e.g. PC220-8"
+      >
 
       <label>Plate Number</label>
-      <input id="plateNumber" type="text" placeholder="e.g. ABC 123">
+      <input
+        id="plateNumber"
+        type="text"
+        placeholder="e.g. ABC 123"
+      >
 
       <label>Current Machine Hours</label>
-      <input id="currentHours" type="number" min="0" placeholder="e.g. 12500">
+      <input
+        id="currentHours"
+        type="number"
+        min="0"
+        placeholder="e.g. 1500"
+      >
 
-      <button type="button" class="green-btn" onclick="continueToServices()">
+      <button
+        type="button"
+        class="green-btn"
+        onclick="continueToServices()"
+      >
         CONTINUE →
       </button>
+
     </div>
 
   </div>
+
 </section>
 
 
-<!-- ================= SERVICES ================= -->
+<!-- =====================================================
+     TYPES OF SERVICES
+===================================================== -->
 
 <section id="serviceListPage" class="hidden">
+
   <div class="container">
 
-    <button type="button" class="back-btn" onclick="backToMachine()">
-      ← BACK
+    <button
+      type="button"
+      class="back-btn"
+      onclick="backToMachine()"
+    >
+      ← BACK TO MACHINE
     </button>
 
+
     <div class="card">
+
       <h2 id="machineTitle">Machine</h2>
 
       <div class="info">
-        <b>Model / ID:</b> <span id="showModel">-</span><br>
-        <b>Plate:</b> <span id="showPlate">-</span><br>
-        <b>Current Hours:</b> <span id="showHours">0</span> H
+
+        <b>Model / ID:</b>
+        <span id="showModel">-</span>
+        <br>
+
+        <b>Plate:</b>
+        <span id="showPlate">-</span>
+        <br>
+
+        <b>Current Hours:</b>
+        <span id="showHours">0</span> H
+
       </div>
+
     </div>
 
+
     <div class="card">
+
       <h2>Types of Services</h2>
 
-      <div class="service-card" onclick="openService('Engine Oil + Filter')">
+
+      <div
+        class="service-card"
+        onclick="openService('Engine Oil + Filter')"
+      >
         <h3>🛢️ Engine Oil + Filter</h3>
         <p>Engine oil and oil filter service</p>
       </div>
 
-      <div class="service-card" onclick="openService('Fuel + SEP')">
+
+      <div
+        class="service-card"
+        onclick="openService('Fuel + SEP')"
+      >
         <h3>⛽ Fuel + SEP</h3>
-        <p>Fuel filters and separator service</p>
+        <p>Fuel filter and separator service</p>
       </div>
 
-      <div class="service-card" onclick="openService('Air Filter')">
+
+      <div
+        class="service-card"
+        onclick="openService('Air Filter')"
+      >
         <h3>🌬️ Air Filter</h3>
         <p>Air filter condition check</p>
       </div>
 
-      <div class="service-card" onclick="openService('Hydraulic Oil + Filter')">
+
+      <div
+        class="service-card"
+        onclick="openService('Hydraulic Oil + Filter')"
+      >
         <h3>💧 Hydraulic Oil + Filter</h3>
         <p>Hydraulic oil and filter service</p>
       </div>
 
-      <div class="service-card" onclick="openService('Breather')">
+
+      <div
+        class="service-card"
+        onclick="openService('Breather')"
+      >
         <h3>🌬️ Breather</h3>
         <p>Breather condition check</p>
       </div>
 
-      <div class="service-card" onclick="openService('Final Drive')">
+
+      <div
+        class="service-card"
+        onclick="openService('Final Drive')"
+      >
         <h3>⚙️ Final Drive</h3>
         <p>Final drive oil service</p>
       </div>
 
-      <div class="service-card" onclick="openService('Damper Case')">
+
+      <div
+        class="service-card"
+        onclick="openService('Damper Case')"
+      >
         <h3>🔩 Damper Case</h3>
         <p>Damper case oil service</p>
       </div>
 
-      <div class="service-card" onclick="openService('S/Machinery')">
+
+      <div
+        class="service-card"
+        onclick="openService('S/Machinery')"
+      >
         <h3>🔄 S/Machinery</h3>
         <p>Swing machinery oil service</p>
       </div>
@@ -329,54 +428,84 @@ footer{
     </div>
 
   </div>
+
 </section>
 
 
-<!-- ================= SERVICE PAGE ================= -->
+<!-- =====================================================
+     SERVICE PAGE
+===================================================== -->
 
 <section id="servicePage" class="hidden">
+
   <div class="container">
 
-    <button type="button" class="back-btn" onclick="backToServices()">
+    <button
+      type="button"
+      class="back-btn"
+      onclick="backToServices()"
+    >
       ← BACK TO SERVICES
     </button>
+
 
     <div class="card">
 
       <h2 id="serviceTitle">Service</h2>
 
+
       <div class="info">
-        <b>Machine:</b> <span id="serviceMachine">-</span><br>
-        <b>Current Hour:</b> <span id="serviceCurrentHour">0</span> H
+
+        <b>Machine:</b>
+        <span id="serviceMachine">-</span>
+        <br>
+
+        <b>Current Hour:</b>
+        <span id="serviceCurrentHour">0</span> H
+
       </div>
 
 
-      <!-- SERVICE INPUTS -->
+      <!-- NEXT SERVICE -->
 
       <label>Next Service Due (Hours)</label>
-      <input id="nextService" type="number" min="0"
-             placeholder="e.g. 12500">
+
+      <input
+        id="nextService"
+        type="number"
+        min="0"
+        placeholder="e.g. 2000"
+      >
 
 
-      <!-- OIL CAPACITY -->
+      <!-- OIL / FUEL CAPACITY -->
 
       <div id="oilSection">
 
-        <label id="capacityLabel">Oil Capacity (Litres)</label>
+        <label id="capacityLabel">
+          Oil Capacity (Litres)
+        </label>
 
-        <input id="oilCapacity"
-               type="number"
-               min="0"
-               placeholder="e.g. 25">
+        <input
+          id="oilCapacity"
+          type="number"
+          min="0"
+          placeholder="e.g. 25"
+        >
 
-        <label>Remaining Capacity (%)</label>
 
-        <input id="oilPercent"
-               type="number"
-               min="0"
-               max="100"
-               value="100"
-               placeholder="100">
+        <label>
+          Remaining Capacity (%)
+        </label>
+
+        <input
+          id="oilPercent"
+          type="number"
+          min="0"
+          max="100"
+          value="100"
+          placeholder="100"
+        >
 
       </div>
 
@@ -389,19 +518,23 @@ footer{
           Filter Condition (%)
         </label>
 
-        <input id="filterPercent"
-               type="number"
-               min="0"
-               max="100"
-               value="100"
-               placeholder="100">
+        <input
+          id="filterPercent"
+          type="number"
+          min="0"
+          max="100"
+          value="100"
+          placeholder="100"
+        >
 
       </div>
 
 
-      <button type="button"
-              class="blue-btn"
-              onclick="calculateService()">
+      <button
+        type="button"
+        class="blue-btn"
+        onclick="calculateService()"
+      >
         CHECK STATUS
       </button>
 
@@ -413,8 +546,15 @@ footer{
         <div id="gauge" class="gauge">
 
           <div class="gauge-text">
-            <strong id="gaugePercent">100%</strong>
-            <span>CONDITION</span>
+
+            <strong id="gaugePercent">
+              100%
+            </strong>
+
+            <span>
+              CONDITION
+            </span>
+
           </div>
 
         </div>
@@ -427,34 +567,60 @@ footer{
       <div class="reading">
 
         <div class="reading-box">
+
           <span id="capacityDisplayLabel">
             🛢️ Capacity
           </span>
-          <strong id="capacityDisplay">-</strong>
+
+          <strong id="capacityDisplay">
+            -
+          </strong>
+
         </div>
 
+
         <div class="reading-box">
+
           <span id="filterDisplayLabel">
             🧰 Filter
           </span>
-          <strong id="filterDisplay">-</strong>
+
+          <strong id="filterDisplay">
+            -
+          </strong>
+
         </div>
 
       </div>
 
 
-      <!-- HOURS REMAINING -->
+      <!-- HOURS -->
 
-      <div class="reading" style="margin-top:10px">
+      <div class="reading">
 
         <div class="reading-box">
-          <span>⏱️ Hours Remaining</span>
-          <strong id="hoursRemaining">-</strong>
+
+          <span>
+            ⏱️ Hours Remaining
+          </span>
+
+          <strong id="hoursRemaining">
+            -
+          </strong>
+
         </div>
 
+
         <div class="reading-box">
-          <span>📅 Service Due</span>
-          <strong id="dueDisplay">-</strong>
+
+          <span>
+            📅 Service Due
+          </span>
+
+          <strong id="dueDisplay">
+            -
+          </strong>
+
         </div>
 
       </div>
@@ -462,13 +628,17 @@ footer{
 
       <!-- STATUS -->
 
-      <div id="statusBox" class="status green">
+      <div
+        id="statusBox"
+        class="status green"
+      >
         ENTER SERVICE INFORMATION
       </div>
 
     </div>
 
   </div>
+
 </section>
 
 
@@ -478,6 +648,10 @@ footer{
 
 
 <script>
+
+/* =====================================================
+   MACHINE
+===================================================== */
 
 let machine = {
   name:"",
@@ -489,7 +663,9 @@ let machine = {
 let selectedService = "";
 
 
-/* ================= SERVICE SETTINGS ================= */
+/* =====================================================
+   SERVICE SETTINGS
+===================================================== */
 
 const serviceSettings = {
 
@@ -558,7 +734,9 @@ const serviceSettings = {
 };
 
 
-/* ================= CONTINUE ================= */
+/* =====================================================
+   CONTINUE
+===================================================== */
 
 function continueToServices(){
 
@@ -590,7 +768,11 @@ function continueToServices(){
     return;
   }
 
-  if(isNaN(hours) || hours < 0){
+  if(
+    document.getElementById("currentHours").value === "" ||
+    isNaN(hours) ||
+    hours < 0
+  ){
     alert("Please enter Current Machine Hours.");
     return;
   }
@@ -602,17 +784,17 @@ function continueToServices(){
   machine.hours = hours;
 
 
-  document.getElementById("machineTitle").textContent =
-    machine.name;
+  document.getElementById("machineTitle")
+    .textContent = machine.name;
 
-  document.getElementById("showModel").textContent =
-    machine.model;
+  document.getElementById("showModel")
+    .textContent = machine.model;
 
-  document.getElementById("showPlate").textContent =
-    machine.plate;
+  document.getElementById("showPlate")
+    .textContent = machine.plate;
 
-  document.getElementById("showHours").textContent =
-    machine.hours;
+  document.getElementById("showHours")
+    .textContent = machine.hours;
 
 
   document.getElementById("machinePage")
@@ -624,13 +806,17 @@ function continueToServices(){
 }
 
 
-/* ================= OPEN SERVICE ================= */
+/* =====================================================
+   OPEN SERVICE
+===================================================== */
 
 function openService(service){
 
   selectedService = service;
 
-  const setting = serviceSettings[service];
+  const setting =
+    serviceSettings[service];
+
 
   document.getElementById("serviceTitle")
     .textContent = service;
@@ -642,7 +828,7 @@ function openService(service){
     .textContent = machine.hours;
 
 
-  /* RESET */
+  /* RESET INPUTS */
 
   document.getElementById("nextService").value = "";
 
@@ -695,14 +881,18 @@ function openService(service){
   }
 
 
+  /* DEFAULT DISPLAY */
+
   document.getElementById("gaugePercent")
     .textContent = "100%";
 
   document.getElementById("capacityDisplay")
-    .textContent = setting.capacity ? "-" : "N/A";
+    .textContent =
+    setting.capacity ? "-" : "N/A";
 
   document.getElementById("filterDisplay")
-    .textContent = setting.filter ? "100%" : "N/A";
+    .textContent =
+    setting.filter ? "100%" : "N/A";
 
   document.getElementById("hoursRemaining")
     .textContent = "-";
@@ -728,19 +918,31 @@ function openService(service){
 }
 
 
-/* ================= CALCULATE ================= */
+/* =====================================================
+   CALCULATE SERVICE
+===================================================== */
 
 function calculateService(){
 
-  const setting = serviceSettings[selectedService];
+  const setting =
+    serviceSettings[selectedService];
+
+
+  const nextInput =
+    document.getElementById("nextService").value;
 
   const next =
-    Number(document.getElementById("nextService").value);
+    Number(nextInput);
 
-  const current = Number(machine.hours);
+  const current =
+    Number(machine.hours);
 
 
-  if(isNaN(next) || next <= 0){
+  if(
+    nextInput === "" ||
+    isNaN(next) ||
+    next <= 0
+  ){
 
     alert("Please enter Next Service Due.");
 
@@ -748,161 +950,19 @@ function calculateService(){
   }
 
 
-  const remainingHours = next - current;
+  /* ================= HOURS ================= */
 
-
-  /* HOURS STATUS */
-
-  if(remainingHours <= 0){
-
-    setStatus(
-      "🔴 SERVICE DUE",
-      "red"
-    );
-
-  }else if(remainingHours <= 50){
-
-    setStatus(
-      "🟡 SERVICE DUE SOON",
-      "yellow"
-    );
-
-  }else{
-
-    setStatus(
-      "🟢 OK",
-      "green"
-    );
-
-  }
+  const remainingHours =
+    next - current;
 
 
   document.getElementById("hoursRemaining")
-    .textContent = remainingHours + " H";
+    .textContent =
+    remainingHours + " H";
 
   document.getElementById("dueDisplay")
-    .textContent = next + " H";
-
-
-  /* CONDITION */
-
-  let condition = 100;
-
-
-  if(setting.capacity){
-
-    const capacity =
-      Number(document.getElementById("oilCapacity").value);
-
-    const oilPercent =
-      Number(document.getElementById("oilPercent").value);
-
-
-    if(isNaN(capacity) || capacity <= 0){
-
-      alert("Please enter Capacity in Litres.");
-
-      return;
-    }
-
-
-    condition = oilPercent;
-
-    document.getElementById("capacityDisplay")
-      .textContent =
-      capacity + " L / " + oilPercent + "%";
-
-  }else{
-
-    document.getElementById("capacityDisplay")
-      .textContent = "N/A";
-
-  }
-
-
-  /* FILTER */
-
-  if(setting.filter){
-
-    const filterPercent =
-      Number(document.getElementById("filterPercent").value);
-
-    document.getElementById("filterDisplay")
-      .textContent = filterPercent + "%";
-
-
-    /*
-      Gauge uses the lower condition
-      between oil/fuel and filter.
-    */
-
-    if(setting.capacity){
-
-      condition = Math.min(
-        condition,
-        filterPercent
-      );
-
-    }else{
-
-      condition = filterPercent;
-
-    }
-
-  }else{
-
-    document.getElementById("filterDisplay")
-      .textContent = "N/A";
-
-  }
-
-
-  /* LIMIT */
-
-  if(condition < 0) condition = 0;
-
-  if(condition > 100) condition = 100;
-
-
-  setGauge(condition);
-
-}
-
-
-/* ================= GAUGE ================= */
-
-function setGauge(percent){
-
-  let color;
-
-
-  /*
-    > 50 = GREEN
-    20 - 50 = YELLOW
-    < 20 = RED
-  */
-
-  function calculateService(){
-
-  const setting = serviceSettings[selectedService];
-
-  const next =
-    Number(document.getElementById("nextService").value);
-
-  const current = Number(machine.hours);
-
-  if(isNaN(next) || next <= 0){
-    alert("Please enter Next Service Due.");
-    return;
-  }
-
-  const remainingHours = next - current;
-
-  document.getElementById("hoursRemaining")
-    .textContent = remainingHours + " H";
-
-  document.getElementById("dueDisplay")
-    .textContent = next + " H";
+    .textContent =
+    next + " H";
 
 
   /* ================= CONDITION ================= */
@@ -914,28 +974,57 @@ function setGauge(percent){
 
   if(setting.capacity){
 
+    const capacityInput =
+      document.getElementById("oilCapacity").value;
+
+    const oilInput =
+      document.getElementById("oilPercent").value;
+
+
     const capacity =
-      Number(document.getElementById("oilCapacity").value);
+      Number(capacityInput);
 
     const oilPercent =
-      Number(document.getElementById("oilPercent").value);
+      Number(oilInput);
 
 
-    if(isNaN(capacity) || capacity <= 0){
+    if(
+      capacityInput === "" ||
+      isNaN(capacity) ||
+      capacity <= 0
+    ){
+
       alert("Please enter Capacity in Litres.");
+
       return;
     }
 
-    if(isNaN(oilPercent) || oilPercent < 0 || oilPercent > 100){
-      alert("Remaining Capacity must be between 0% and 100%.");
+
+    if(
+      oilInput === "" ||
+      isNaN(oilPercent) ||
+      oilPercent < 0 ||
+      oilPercent > 100
+    ){
+
+      alert(
+        "Remaining Capacity must be between 0% and 100%."
+      );
+
       return;
     }
 
-    condition = oilPercent;
+
+    condition =
+      oilPercent;
+
 
     document.getElementById("capacityDisplay")
       .textContent =
-      capacity + " L / " + oilPercent + "%";
+      capacity +
+      " L / " +
+      oilPercent +
+      "%";
 
   }else{
 
@@ -945,31 +1034,48 @@ function setGauge(percent){
   }
 
 
-  /* FILTER / SEP / BREATHER */
+  /* ================= FILTER ================= */
 
   if(setting.filter){
 
+    const filterInput =
+      document.getElementById("filterPercent").value;
+
     const filterPercent =
-      Number(document.getElementById("filterPercent").value);
+      Number(filterInput);
 
-    if(isNaN(filterPercent) ||
-       filterPercent < 0 ||
-       filterPercent > 100){
 
-      alert("Condition must be between 0% and 100%.");
+    if(
+      filterInput === "" ||
+      isNaN(filterPercent) ||
+      filterPercent < 0 ||
+      filterPercent > 100
+    ){
+
+      alert(
+        "Condition must be between 0% and 100%."
+      );
+
       return;
     }
 
+
     document.getElementById("filterDisplay")
-      .textContent = filterPercent + "%";
+      .textContent =
+      filterPercent + "%";
 
 
-    /* Use the lower condition */
+    /*
+      IMPORTANT:
+      The lowest condition controls
+      the gauge and final status.
+    */
 
-    condition = Math.min(
-      condition,
-      filterPercent
-    );
+    condition =
+      Math.min(
+        condition,
+        filterPercent
+      );
 
   }else{
 
@@ -979,11 +1085,16 @@ function setGauge(percent){
   }
 
 
-  /* LIMIT */
+  /* ================= LIMIT ================= */
 
-  if(condition < 0) condition = 0;
-
-  if(condition > 100) condition = 100;
+  condition =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        condition
+      )
+    );
 
 
   /* ================= GAUGE ================= */
@@ -991,48 +1102,64 @@ function setGauge(percent){
   setGauge(condition);
 
 
-  /* ================= FINAL STATUS ================= */
+  /* =================================================
+     FINAL STATUS
 
-  /*
-    Condition:
-    >50%  = GREEN
-    20-50% = YELLOW
-    <20%  = RED
+     CONDITION:
+     >50%      GREEN
+     20%-50%   YELLOW
+     <20%      RED
 
-    Hours:
-    >50H   = GREEN
-    1-50H  = YELLOW
-    <=0H   = RED
+     HOURS:
+     >50H      GREEN
+     1-50H     YELLOW
+     <=0H      RED
 
-    Whichever is worse wins.
-  */
+     WORST RESULT WINS
+  ================================================= */
+
 
   let conditionLevel;
 
+
   if(condition > 50){
-    conditionLevel = 3; // GREEN
+
+    conditionLevel = 3;
+
   }else if(condition >= 20){
-    conditionLevel = 2; // YELLOW
+
+    conditionLevel = 2;
+
   }else{
-    conditionLevel = 1; // RED
+
+    conditionLevel = 1;
+
   }
 
 
   let hoursLevel;
 
+
   if(remainingHours > 50){
-    hoursLevel = 3; // GREEN
+
+    hoursLevel = 3;
+
   }else if(remainingHours > 0){
-    hoursLevel = 2; // YELLOW
+
+    hoursLevel = 2;
+
   }else{
-    hoursLevel = 1; // RED
+
+    hoursLevel = 1;
+
   }
 
 
-  /* The worst condition controls the status */
-
   const finalLevel =
-    Math.min(conditionLevel, hoursLevel);
+    Math.min(
+      conditionLevel,
+      hoursLevel
+    );
 
 
   if(finalLevel === 1){
@@ -1061,56 +1188,71 @@ function setGauge(percent){
 }
 
 
-  document.getElementById("gauge").style.background =
+/* =====================================================
+   GAUGE
+===================================================== */
+
+function setGauge(percent){
+
+  let color;
+
+
+  if(percent > 50){
+
+    color = "#16a34a";
+
+  }else if(percent >= 20){
+
+    color = "#eab308";
+
+  }else{
+
+    color = "#dc2626";
+
+  }
+
+
+  const gauge =
+    document.getElementById("gauge");
+
+
+  gauge.style.background =
     "conic-gradient(" +
-    color + " " + percent + "%, " +
-    "#e5e7eb " + percent + "%)";
+    color +
+    " 0% " +
+    percent +
+    "%, " +
+    "#e5e7eb " +
+    percent +
+    "% 100%)";
 
 
   document.getElementById("gaugePercent")
-    .textContent = Math.round(percent) + "%";
+    .textContent =
+    Math.round(percent) + "%";
 
 }
 
 
-/* ================= STATUS ================= */
+/* =====================================================
+   STATUS
+===================================================== */
 
-function setStatus(text, type){
+function setStatus(text,type){
 
   const box =
     document.getElementById("statusBox");
 
+
   box.textContent = text;
 
-  box.className = "status " + type;
+
+  box.className =
+    "status " + type;
 
 }
 
 
-/* ================= BACK ================= */
-
-function backToMachine(){
-
-  document.getElementById("serviceListPage")
-    .classList.add("hidden");
-
-  document.getElementById("machinePage")
-    .classList.remove("hidden");
-
-}
-
-
-function backToServices(){
-
-  document.getElementById("servicePage")
-    .classList.add("hidden");
-
-  document.getElementById("serviceListPage")
-    .classList.remove("hidden");
-
-}
-
-</script>
-
-</body>
-</html>
+/* =====================================================
+   BACK TO MACHINE
+=======
