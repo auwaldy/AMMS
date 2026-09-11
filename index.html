@@ -7,1221 +7,946 @@
 <title>AMMS - Auwal DY Maintenance Management System</title>
 
 <style>
-
 *{
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 body{
-    margin:0;
-    background:#f4f6f8;
-    color:#172033;
+  font-family:Arial, sans-serif;
+  background:#f3f4f6;
+  color:#111827;
 }
 
 header{
-    background:#071d38;
-    color:white;
-    padding:22px 15px;
-    text-align:center;
+  background:#111827;
+  color:white;
+  padding:20px 15px;
+  text-align:center;
 }
 
 header h1{
-    margin:0;
-    font-size:30px;
+  font-size:24px;
 }
 
 header p{
-    margin:7px 0 0;
-    color:#cbd5e1;
+  margin-top:5px;
+  color:#d1d5db;
+  font-size:13px;
 }
 
 .container{
-    max-width:850px;
-    margin:auto;
-    padding:18px;
+  max-width:600px;
+  margin:auto;
+  padding:18px;
 }
 
 .card{
-    background:white;
-    border-radius:16px;
-    padding:20px;
-    margin-bottom:18px;
-    box-shadow:0 4px 16px rgba(0,0,0,.08);
+  background:white;
+  border-radius:14px;
+  padding:18px;
+  margin-bottom:15px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
 }
 
 h2{
-    margin-top:0;
-    text-align:center;
+  margin-bottom:15px;
+  font-size:20px;
+}
+
+h3{
+  font-size:17px;
+  margin-bottom:7px;
 }
 
 label{
-    display:block;
-    font-weight:bold;
-    margin:14px 0 6px;
+  display:block;
+  margin-top:12px;
+  margin-bottom:6px;
+  font-weight:bold;
+  font-size:14px;
 }
 
 input{
-    width:100%;
-    padding:14px;
-    border:1px solid #d1d5db;
-    border-radius:9px;
-    font-size:16px;
+  width:100%;
+  padding:13px;
+  border:1px solid #d1d5db;
+  border-radius:9px;
+  font-size:16px;
 }
 
 button{
-    width:100%;
-    padding:15px;
-    margin-top:16px;
-    border:0;
-    border-radius:10px;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    background:#2563eb;
+  width:100%;
+  border:0;
+  border-radius:10px;
+  padding:14px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
 .green-btn{
-    background:#059669;
+  background:#16a34a;
+  color:white;
+  margin-top:18px;
 }
 
 .back-btn{
-    background:#6b7280;
+  background:#374151;
+  color:white;
+  margin-bottom:15px;
 }
 
-.machine-title{
-    text-align:center;
-}
-
-.machine-title h2{
-    margin-bottom:7px;
-}
-
-.small{
-    color:#6b7280;
-    font-size:14px;
-    margin:4px 0;
-}
-
-.current-box{
-    background:#eff6ff;
-    border-radius:13px;
-    padding:17px;
-    text-align:center;
-    margin:20px 0;
-}
-
-.current-hour{
-    font-size:34px;
-    font-weight:bold;
-    color:#2563eb;
-    margin:8px 0;
+.blue-btn{
+  background:#2563eb;
+  color:white;
+  margin-top:12px;
 }
 
 .service-card{
-    background:white;
-    padding:18px;
-    margin:11px 0;
-    border-radius:12px;
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
-    font-size:17px;
-    font-weight:bold;
-    cursor:pointer;
+  background:white;
+  border-radius:14px;
+  padding:17px;
+  margin-bottom:12px;
+  box-shadow:0 3px 10px rgba(0,0,0,.07);
+  cursor:pointer;
 }
 
 .service-card:active{
-    transform:scale(.99);
-    background:#f8fafc;
+  transform:scale(.98);
 }
 
-.machine-info{
-    background:#f8fafc;
-    padding:13px;
-    border-radius:10px;
-    margin-top:10px;
+.service-card p{
+  color:#6b7280;
+  font-size:13px;
 }
 
-hr{
-    border:0;
-    border-top:1px solid #eee;
-    margin:20px 0;
+.info{
+  background:#f9fafb;
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:15px;
+  line-height:1.7;
 }
-
-/* GAUGE */
 
 .gauge-area{
-    display:flex;
-    justify-content:center;
-    margin:28px 0;
+  text-align:center;
+  margin:20px 0;
 }
 
 .gauge{
-    width:230px;
-    height:230px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-    background:conic-gradient(
-        #16a34a 0deg,
-        #16a34a 360deg
-    );
+  width:190px;
+  height:190px;
+  border-radius:50%;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  background:#e5e7eb;
 }
 
-.gauge:before{
-    content:"";
-    position:absolute;
-    width:180px;
-    height:180px;
-    background:white;
-    border-radius:50%;
+.gauge::before{
+  content:"";
+  width:145px;
+  height:145px;
+  background:white;
+  border-radius:50%;
+  position:absolute;
 }
 
-.gauge-content{
-    position:relative;
-    z-index:2;
-    text-align:center;
+.gauge-text{
+  position:relative;
+  z-index:2;
+  text-align:center;
 }
 
-.percent{
-    font-size:45px;
-    font-weight:bold;
+.gauge-text strong{
+  display:block;
+  font-size:35px;
 }
 
-.capacity-title{
-    font-size:14px;
-    color:#64748b;
-    margin-top:4px;
+.gauge-text span{
+  font-size:13px;
+  color:#6b7280;
 }
 
-.capacity-info{
-    background:#f8fafc;
-    border-radius:12px;
-    padding:15px;
+.reading{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
-.capacity-row{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    padding:10px 0;
-    border-bottom:1px solid #e5e7eb;
+.reading-box{
+  background:#f9fafb;
+  border-radius:10px;
+  padding:13px;
+  text-align:center;
 }
 
-.capacity-row:last-child{
-    border-bottom:0;
+.reading-box strong{
+  display:block;
+  font-size:20px;
+  margin-top:5px;
 }
 
-.status-box{
-    padding:17px;
-    margin-top:18px;
-    border-radius:11px;
-    text-align:center;
-    font-weight:bold;
-    font-size:18px;
+.status{
+  padding:15px;
+  border-radius:10px;
+  text-align:center;
+  font-weight:bold;
+  margin-top:15px;
 }
 
-.ok{
-    background:#dcfce7;
-    color:#166534;
+.green{
+  background:#dcfce7;
+  color:#166534;
 }
 
-.soon{
-    background:#fef3c7;
-    color:#92400e;
+.yellow{
+  background:#fef9c3;
+  color:#854d0e;
 }
 
-.due{
-    background:#fee2e2;
-    color:#991b1b;
-}
-
-.info-box{
-    background:#eef6ff;
-    padding:13px;
-    border-radius:10px;
-    margin-top:12px;
-    color:#1e40af;
+.red{
+  background:#fee2e2;
+  color:#991b1b;
 }
 
 .hidden{
-    display:none;
+  display:none !important;
 }
 
 footer{
-    text-align:center;
-    color:#777;
-    padding:30px 10px;
+  text-align:center;
+  padding:25px 10px;
+  color:#6b7280;
+  font-size:12px;
 }
-
 </style>
 </head>
 
 <body>
 
 <header>
-    <h1>AMMS</h1>
-    <p>Auwal DY Maintenance Management System</p>
+  <h1>AMMS</h1>
+  <p>Auwal DY Maintenance Management System</p>
 </header>
 
 
-<div class="container">
+<!-- ================= ADD MACHINE ================= -->
 
-
-<!-- =========================
-     ADD MACHINE
-========================= -->
-
-<div id="machinePage">
+<section id="machinePage">
+  <div class="container">
 
     <div class="card">
+      <h2>Add Machine</h2>
 
-        <h2>➕ Add Machine</h2>
+      <label>Machine Name</label>
+      <input id="machineName" type="text" placeholder="e.g. Excavator 01">
 
-        <label>Machine Name</label>
-        <input
-            type="text"
-            id="machineName"
-            placeholder="Example: Excavator"
-        >
+      <label>Machine Model / ID</label>
+      <input id="machineModel" type="text" placeholder="e.g. PC220-8">
 
-        <label>Machine Model / ID</label>
-        <input
-            type="text"
-            id="machineId"
-            placeholder="Example: PC220-01"
-        >
+      <label>Plate Number</label>
+      <input id="plateNumber" type="text" placeholder="e.g. ABC 123">
 
-        <label>Plate Number</label>
-        <input
-            type="text"
-            id="plateNumber"
-            placeholder="Example: 5-16616"
-        >
+      <label>Current Machine Hours</label>
+      <input id="currentHours" type="number" min="0" placeholder="e.g. 12500">
 
-        <label>Current Machine Hours</label>
-        <input
-            type="number"
-            id="machineHour"
-            placeholder="Example: 2450"
-        >
+      <button type="button" class="green-btn" onclick="continueToServices()">
+        CONTINUE →
+      </button>
+    </div>
 
-        <!-- IMPORTANT:
-             CONTINUE DOES NOT USE SAVING
-        -->
-
-      <button
-type="button"
-class="green-btn"
-onclick="
-document.getElementById('machinePage').style.display='none';
-document.getElementById('serviceListPage').style.display='block';
-"
->
-CONTINUE →
-</button>
+  </div>
+</section>
 
 
-<!-- =========================
-     SERVICES PAGE
-========================= -->
+<!-- ================= SERVICES ================= -->
 
-<div
-    id="serviceListPage"
-    class="hidden"
->
+<section id="serviceListPage" class="hidden">
+  <div class="container">
 
-    <button
-        type="button"
-        class="back-btn"
-        onclick="backToMachine()"
-    >
-        ← Back
+    <button type="button" class="back-btn" onclick="backToMachine()">
+      ← BACK
+    </button>
+
+    <div class="card">
+      <h2 id="machineTitle">Machine</h2>
+
+      <div class="info">
+        <b>Model / ID:</b> <span id="showModel">-</span><br>
+        <b>Plate:</b> <span id="showPlate">-</span><br>
+        <b>Current Hours:</b> <span id="showHours">0</span> H
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Types of Services</h2>
+
+      <div class="service-card" onclick="openService('Engine Oil + Filter')">
+        <h3>🛢️ Engine Oil + Filter</h3>
+        <p>Engine oil and oil filter service</p>
+      </div>
+
+      <div class="service-card" onclick="openService('Fuel + SEP')">
+        <h3>⛽ Fuel + SEP</h3>
+        <p>Fuel filters and separator service</p>
+      </div>
+
+      <div class="service-card" onclick="openService('Air Filter')">
+        <h3>🌬️ Air Filter</h3>
+        <p>Air filter condition check</p>
+      </div>
+
+      <div class="service-card" onclick="openService('Hydraulic Oil + Filter')">
+        <h3>💧 Hydraulic Oil + Filter</h3>
+        <p>Hydraulic oil and filter service</p>
+      </div>
+
+      <div class="service-card" onclick="openService('Breather')">
+        <h3>🌬️ Breather</h3>
+        <p>Breather condition check</p>
+      </div>
+
+      <div class="service-card" onclick="openService('Final Drive')">
+        <h3>⚙️ Final Drive</h3>
+        <p>Final drive oil service</p>
+      </div>
+
+      <div class="service-card" onclick="openService('Damper Case')">
+        <h3>🔩 Damper Case</h3>
+        <p>Damper case oil service</p>
+      </div>
+
+      <div class="service-card" onclick="openService('S/Machinery')">
+        <h3>🔄 S/Machinery</h3>
+        <p>Swing machinery oil service</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================= SERVICE PAGE ================= -->
+
+<section id="servicePage" class="hidden">
+  <div class="container">
+
+    <button type="button" class="back-btn" onclick="backToServices()">
+      ← BACK TO SERVICES
     </button>
 
     <div class="card">
 
-        <div class="machine-title">
+      <h2 id="serviceTitle">Service</h2>
 
-            <h2 id="machineDisplayName">
-                Machine
-            </h2>
+      <div class="info">
+        <b>Machine:</b> <span id="serviceMachine">-</span><br>
+        <b>Current Hour:</b> <span id="serviceCurrentHour">0</span> H
+      </div>
 
-            <div
-                class="small"
-                id="machineDisplayId">
-            </div>
 
-            <div
-                class="small"
-                id="machineDisplayPlate">
-            </div>
+      <!-- SERVICE INPUTS -->
+
+      <label>Next Service Due (Hours)</label>
+      <input id="nextService" type="number" min="0"
+             placeholder="e.g. 12500">
+
+
+      <!-- OIL CAPACITY -->
+
+      <div id="oilSection">
+
+        <label id="capacityLabel">Oil Capacity (Litres)</label>
+
+        <input id="oilCapacity"
+               type="number"
+               min="0"
+               placeholder="e.g. 25">
+
+        <label>Remaining Capacity (%)</label>
+
+        <input id="oilPercent"
+               type="number"
+               min="0"
+               max="100"
+               value="100"
+               placeholder="100">
+
+      </div>
+
+
+      <!-- FILTER -->
+
+      <div id="filterSection">
+
+        <label id="filterLabel">
+          Filter Condition (%)
+        </label>
+
+        <input id="filterPercent"
+               type="number"
+               min="0"
+               max="100"
+               value="100"
+               placeholder="100">
+
+      </div>
+
+
+      <button type="button"
+              class="blue-btn"
+              onclick="calculateService()">
+        CHECK STATUS
+      </button>
+
+
+      <!-- GAUGE -->
+
+      <div class="gauge-area">
+
+        <div id="gauge" class="gauge">
+
+          <div class="gauge-text">
+            <strong id="gaugePercent">100%</strong>
+            <span>CONDITION</span>
+          </div>
 
         </div>
 
+      </div>
 
-        <div class="current-box">
 
-            <div>Current Machine Hours</div>
+      <!-- READING -->
 
-            <div
-                class="current-hour"
-                id="machineDisplayHour"
-            >
-                0 H
-            </div>
+      <div class="reading">
 
+        <div class="reading-box">
+          <span id="capacityDisplayLabel">
+            🛢️ Capacity
+          </span>
+          <strong id="capacityDisplay">-</strong>
         </div>
 
-
-        <h2>🔧 Types of Services</h2>
-
-
-        <div
-            class="service-card"
-            onclick="openService('Engine Oil + Filter')"
-        >
-            🔧 Engine Oil + Filter
+        <div class="reading-box">
+          <span id="filterDisplayLabel">
+            🧰 Filter
+          </span>
+          <strong id="filterDisplay">-</strong>
         </div>
 
+      </div>
 
-        <div
-            class="service-card"
-            onclick="openService('Fuel + SEP')"
-        >
-            ⛽ Fuel + SEP
+
+      <!-- HOURS REMAINING -->
+
+      <div class="reading" style="margin-top:10px">
+
+        <div class="reading-box">
+          <span>⏱️ Hours Remaining</span>
+          <strong id="hoursRemaining">-</strong>
         </div>
 
-
-        <div
-            class="service-card"
-            onclick="openService('Air Filter')"
-        >
-            🌬️ Air Filter
+        <div class="reading-box">
+          <span>📅 Service Due</span>
+          <strong id="dueDisplay">-</strong>
         </div>
 
-
-        <div
-            class="service-card"
-            onclick="openService('Hydraulic Oil + Filter')"
-        >
-            💧 Hydraulic Oil + Filter
-        </div>
+      </div>
 
 
-        <div
-            class="service-card"
-            onclick="openService('Breather')"
-        >
-            🌬️ Breather
-        </div>
+      <!-- STATUS -->
 
-
-        <div
-            class="service-card"
-            onclick="openService('Final Drive')"
-        >
-            ⚙️ Final Drive
-        </div>
-
-
-        <div
-            class="service-card"
-            onclick="openService('Damper Case')"
-        >
-            🔩 Damper Case
-        </div>
-
-
-        <div
-            class="service-card"
-            onclick="openService('S/Machinery')"
-        >
-            🔄 S/Machinery
-        </div>
+      <div id="statusBox" class="status green">
+        ENTER SERVICE INFORMATION
+      </div>
 
     </div>
 
-</div>
-
-
-<!-- =========================
-     SERVICE PAGE
-========================= -->
-
-<div
-    id="servicePage"
-    class="hidden"
->
-
-    <button
-        type="button"
-        class="back-btn"
-        onclick="backToServices()"
-    >
-        ← Back to Services
-    </button>
-
-
-    <div class="card">
-
-        <h2 id="serviceTitle">
-            Service
-        </h2>
-
-        <div
-            class="small"
-            id="serviceMachineInfo"
-            style="text-align:center;"
-        >
-        </div>
-
-
-        <hr>
-
-
-        <label>Current Hour</label>
-
-        <input
-            type="number"
-            id="currentHour"
-        >
-
-
-        <label>Next Service Due</label>
-
-        <input
-            type="number"
-            id="nextService"
-            placeholder="Example: 2700"
-        >
-
-
-        <!-- OIL/FUEL CAPACITY -->
-
-        <div id="capacityInputArea">
-
-            <label id="capacityLabel">
-                Oil Capacity (Litres)
-            </label>
-
-            <input
-                type="number"
-                id="capacityValue"
-                step="0.1"
-                placeholder="Example: 20"
-            >
-
-            <label id="remainingLabel">
-                Remaining Capacity (%)
-            </label>
-
-            <input
-                type="number"
-                id="remainingValue"
-                min="0"
-                max="100"
-                value="100"
-            >
-
-        </div>
-
-
-        <!-- FILTER -->
-
-        <div
-            id="filterInputArea"
-            class="hidden"
-        >
-
-            <label id="filterLabel">
-                Filter Condition (%)
-            </label>
-
-            <input
-                type="number"
-                id="filterValue"
-                min="0"
-                max="100"
-                value="100"
-            >
-
-        </div>
-
-
-        <button
-            type="button"
-            onclick="calculateService()"
-        >
-            🧮 CALCULATE
-        </button>
-
-
-        <!-- GAUGE -->
-
-        <div class="gauge-area">
-
-            <div
-                class="gauge"
-                id="gauge"
-            >
-
-                <div class="gauge-content">
-
-                    <div
-                        class="percent"
-                        id="percent"
-                    >
-                        100%
-                    </div>
-
-                    <div class="capacity-title">
-                        REMAINING
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- INFORMATION -->
-
-        <div class="capacity-info">
-
-            <div class="capacity-row">
-
-                <span id="capacityDisplayLabel">
-                    🛢️ Oil Capacity
-                </span>
-
-                <strong id="capacityDisplay">
-                    0 L
-                </strong>
-
-            </div>
-
-
-            <div
-                class="capacity-row"
-                id="filterDisplayRow"
-            >
-
-                <span id="filterDisplayLabel">
-                    🧰 Filter
-                </span>
-
-                <strong id="filterDisplay">
-                    100%
-                </strong>
-
-            </div>
-
-
-            <div class="capacity-row">
-
-                <span>
-                    ⏱️ Hours Remaining
-                </span>
-
-                <strong id="hoursDisplay">
-                    -
-                </strong>
-
-            </div>
-
-        </div>
-
-
-        <!-- STATUS -->
-
-        <div
-            id="statusBox"
-            class="status-box ok"
-        >
-            🟢 OK
-        </div>
-
-
-        <div
-            id="messageBox"
-            class="info-box"
-        >
-            Enter the service information and press CALCULATE.
-        </div>
-
-
-        <button
-            type="button"
-            class="green-btn"
-            onclick="resetService()"
-        >
-            ✅ SERVICE COMPLETED / RESET
-        </button>
-
-    </div>
-
-</div>
-
-
-</div>
+  </div>
+</section>
 
 
 <footer>
-    AMMS © Auwal DY
+  AMMS © Auwal DY
 </footer>
 
 
 <script>
 
-/* =====================================
-   CURRENT MACHINE
-===================================== */
-
-let machine = null;
+let machine = {
+  name:"",
+  model:"",
+  plate:"",
+  hours:0
+};
 
 let selectedService = "";
 
 
-/* =====================================
-   SERVICE SETTINGS
-===================================== */
+/* ================= SERVICE SETTINGS ================= */
 
 const serviceSettings = {
 
-    "Engine Oil + Filter": {
-        capacityLabel:"Oil Capacity (Litres)",
-        displayLabel:"🛢️ Oil Capacity",
-        filter:true,
-        filterLabel:"Filter Condition (%)",
-        filterDisplay:"🧰 Filter"
-    },
+  "Engine Oil + Filter":{
+    capacity:true,
+    capacityLabel:"Oil Capacity (Litres)",
+    capacityIcon:"🛢️ Oil Capacity",
+    filter:true,
+    filterLabel:"Filter Condition (%)",
+    filterIcon:"🧰 Filter"
+  },
 
-    "Fuel + SEP": {
-        capacityLabel:"Fuel Capacity (Litres)",
-        displayLabel:"⛽ Fuel Capacity",
-        filter:true,
-        filterLabel:"SEP Condition (%)",
-        filterDisplay:"🧰 SEP"
-    },
+  "Fuel + SEP":{
+    capacity:true,
+    capacityLabel:"Fuel Capacity (Litres)",
+    capacityIcon:"⛽ Fuel Capacity",
+    filter:true,
+    filterLabel:"SEP Condition (%)",
+    filterIcon:"🧰 SEP"
+  },
 
-    "Air Filter": {
-        capacityLabel:null,
-        displayLabel:null,
-        filter:true,
-        filterLabel:"Air Filter Condition (%)",
-        filterDisplay:"🌬️ Air Filter"
-    },
+  "Air Filter":{
+    capacity:false,
+    filter:true,
+    filterLabel:"Air Filter Condition (%)",
+    filterIcon:"🌬️ Air Filter"
+  },
 
-    "Hydraulic Oil + Filter": {
-        capacityLabel:"Hydraulic Oil Capacity (Litres)",
-        displayLabel:"💧 Hydraulic Oil Capacity",
-        filter:true,
-        filterLabel:"Hydraulic Filter Condition (%)",
-        filterDisplay:"🧰 Hydraulic Filter"
-    },
+  "Hydraulic Oil + Filter":{
+    capacity:true,
+    capacityLabel:"Hydraulic Oil Capacity (Litres)",
+    capacityIcon:"💧 Hydraulic Oil Capacity",
+    filter:true,
+    filterLabel:"Hydraulic Filter Condition (%)",
+    filterIcon:"🧰 Hydraulic Filter"
+  },
 
-    "Breather": {
-        capacityLabel:null,
-        displayLabel:null,
-        filter:true,
-        filterLabel:"Breather Condition (%)",
-        filterDisplay:"🌬️ Breather"
-    },
+  "Breather":{
+    capacity:false,
+    filter:true,
+    filterLabel:"Breather Condition (%)",
+    filterIcon:"🌬️ Breather"
+  },
 
-    "Final Drive": {
-        capacityLabel:"Oil Capacity (Litres)",
-        displayLabel:"⚙️ Oil Capacity",
-        filter:false
-    },
+  "Final Drive":{
+    capacity:true,
+    capacityLabel:"Oil Capacity (Litres)",
+    capacityIcon:"⚙️ Oil Capacity",
+    filter:false
+  },
 
-    "Damper Case": {
-        capacityLabel:"Oil Capacity (Litres)",
-        displayLabel:"🔩 Oil Capacity",
-        filter:false
-    },
+  "Damper Case":{
+    capacity:true,
+    capacityLabel:"Oil Capacity (Litres)",
+    capacityIcon:"🔩 Oil Capacity",
+    filter:false
+  },
 
-    "S/Machinery": {
-        capacityLabel:"Oil Capacity (Litres)",
-        displayLabel:"🔄 Oil Capacity",
-        filter:false
-    }
+  "S/Machinery":{
+    capacity:true,
+    capacityLabel:"Oil Capacity (Litres)",
+    capacityIcon:"🔄 Oil Capacity",
+    filter:false
+  }
 
 };
 
 
-/* =====================================
-   CONTINUE
-   NO SAVING
-===================================== */
+/* ================= CONTINUE ================= */
 
 function continueToServices(){
 
-    const name =
-        document.getElementById("machineName").value.trim();
+  const name =
+    document.getElementById("machineName").value.trim();
 
-    const id =
-        document.getElementById("machineId").value.trim();
+  const model =
+    document.getElementById("machineModel").value.trim();
 
-    const plate =
-        document.getElementById("plateNumber").value.trim();
+  const plate =
+    document.getElementById("plateNumber").value.trim();
 
-    const hourValue =
-        document.getElementById("machineHour").value;
-
-    const hour =
-        Number(hourValue);
+  const hours =
+    Number(document.getElementById("currentHours").value);
 
 
-    if(name === ""){
+  if(name === ""){
+    alert("Please enter Machine Name.");
+    return;
+  }
 
-        alert("Please enter Machine Name.");
+  if(model === ""){
+    alert("Please enter Machine Model / ID.");
+    return;
+  }
 
-        return;
+  if(plate === ""){
+    alert("Please enter Plate Number.");
+    return;
+  }
 
-    }
-
-
-    if(id === ""){
-
-        alert("Please enter Machine Model / ID.");
-
-        return;
-
-    }
-
-
-    if(plate === ""){
-
-        alert("Please enter Plate Number.");
-
-        return;
-
-    }
+  if(isNaN(hours) || hours < 0){
+    alert("Please enter Current Machine Hours.");
+    return;
+  }
 
 
-    if(
-        hourValue === "" ||
-        isNaN(hour) ||
-        hour < 0
-    ){
-
-        alert("Please enter Current Machine Hours.");
-
-        return;
-
-    }
+  machine.name = name;
+  machine.model = model;
+  machine.plate = plate;
+  machine.hours = hours;
 
 
-    /* MACHINE EXISTS ONLY IN CURRENT PAGE */
+  document.getElementById("machineTitle").textContent =
+    machine.name;
 
-    machine = {
+  document.getElementById("showModel").textContent =
+    machine.model;
 
-        name:name,
+  document.getElementById("showPlate").textContent =
+    machine.plate;
 
-        id:id,
-
-        plate:plate,
-
-        hour:hour
-
-    };
+  document.getElementById("showHours").textContent =
+    machine.hours;
 
 
-    document.getElementById(
-        "machineDisplayName"
-    ).innerText =
-        machine.name;
+  document.getElementById("machinePage")
+    .classList.add("hidden");
 
-
-    document.getElementById(
-        "machineDisplayId"
-    ).innerText =
-        "Model / ID: " + machine.id;
-
-
-    document.getElementById(
-        "machineDisplayPlate"
-    ).innerText =
-        "Plate Number: " + machine.plate;
-
-
-    document.getElementById(
-        "machineDisplayHour"
-    ).innerText =
-        machine.hour + " H";
-
-
-    document.getElementById(
-        "machinePage"
-    ).classList.add("hidden");
-
-
-    document.getElementById(
-        "serviceListPage"
-    ).classList.remove("hidden");
-
+  document.getElementById("serviceListPage")
+    .classList.remove("hidden");
 
 }
 
 
-/* =====================================
-   OPEN SERVICE
-===================================== */
+/* ================= OPEN SERVICE ================= */
 
-function openService(serviceName){
+function openService(service){
 
-    selectedService =
-        serviceName;
+  selectedService = service;
 
+  const setting = serviceSettings[service];
 
-    const settings =
-        serviceSettings[serviceName];
+  document.getElementById("serviceTitle")
+    .textContent = service;
 
+  document.getElementById("serviceMachine")
+    .textContent = machine.name;
 
-    document.getElementById(
-        "serviceTitle"
-    ).innerText =
-        serviceName;
+  document.getElementById("serviceCurrentHour")
+    .textContent = machine.hours;
 
 
-    document.getElementById(
-        "serviceMachineInfo"
-    ).innerText =
-        machine.name +
-        " | " +
-        machine.id;
+  /* RESET */
+
+  document.getElementById("nextService").value = "";
+
+  document.getElementById("oilCapacity").value = "";
+
+  document.getElementById("oilPercent").value = "100";
+
+  document.getElementById("filterPercent").value = "100";
 
 
-    document.getElementById(
-        "currentHour"
-    ).value =
-        machine.hour;
+  /* CAPACITY */
+
+  if(setting.capacity){
+
+    document.getElementById("oilSection")
+      .classList.remove("hidden");
+
+    document.getElementById("capacityLabel")
+      .textContent = setting.capacityLabel;
+
+    document.getElementById("capacityDisplayLabel")
+      .textContent = setting.capacityIcon;
+
+  }else{
+
+    document.getElementById("oilSection")
+      .classList.add("hidden");
+
+  }
 
 
-    document.getElementById(
-        "nextService"
-    ).value =
-        "";
+  /* FILTER */
+
+  if(setting.filter){
+
+    document.getElementById("filterSection")
+      .classList.remove("hidden");
+
+    document.getElementById("filterLabel")
+      .textContent = setting.filterLabel;
+
+    document.getElementById("filterDisplayLabel")
+      .textContent = setting.filterIcon;
+
+  }else{
+
+    document.getElementById("filterSection")
+      .classList.add("hidden");
+
+  }
 
 
-    document.getElementById(
-        "capacityValue"
-    ).value =
-        "";
+  document.getElementById("gaugePercent")
+    .textContent = "100%";
+
+  document.getElementById("capacityDisplay")
+    .textContent = setting.capacity ? "-" : "N/A";
+
+  document.getElementById("filterDisplay")
+    .textContent = setting.filter ? "100%" : "N/A";
+
+  document.getElementById("hoursRemaining")
+    .textContent = "-";
+
+  document.getElementById("dueDisplay")
+    .textContent = "-";
 
 
-    document.getElementById(
-        "remainingValue"
-    ).value =
-        100;
+  setGauge(100);
+
+  setStatus(
+    "ENTER SERVICE INFORMATION",
+    "green"
+  );
 
 
-    document.getElementById(
-        "filterValue"
-    ).value =
-        100;
+  document.getElementById("serviceListPage")
+    .classList.add("hidden");
 
-
-    /* SERVICE WITH OIL/FUEL */
-
-    if(settings.capacityLabel){
-
-        document.getElementById(
-            "capacityInputArea"
-        ).classList.remove("hidden");
-
-
-        document.getElementById(
-            "capacityLabel"
-        ).innerText =
-            settings.capacityLabel;
-
-
-        document.getElementById(
-            "capacityDisplayLabel"
-        ).innerText =
-            settings.displayLabel;
-
-    }
-
-    else{
-
-        document.getElementById(
-            "capacityInputArea"
-        ).classList.add("hidden");
-
-    }
-
-
-    /* FILTER */
-
-    if(settings.filter){
-
-        document.getElementById(
-            "filterInputArea"
-        ).classList.remove("hidden");
-
-
-        document.getElementById(
-            "filterLabel"
-        ).innerText =
-            settings.filterLabel;
-
-
-        document.getElementById(
-            "filterDisplayLabel"
-        ).innerText =
-            settings.filterDisplay;
-
-
-        document.getElementById(
-            "filterDisplayRow"
-        ).classList.remove("hidden");
-
-    }
-
-    else{
-
-        document.getElementById(
-            "filterInputArea"
-        ).classList.add("hidden");
-
-
-        document.getElementById(
-            "filterDisplayRow"
-        ).classList.add("hidden");
-
-    }
-
-
-    resetGauge();
-
-
-    document.getElementById(
-        "serviceListPage"
-    ).classList.add("hidden");
-
-
-    document.getElementById(
-        "servicePage"
-    ).classList.remove("hidden");
+  document.getElementById("servicePage")
+    .classList.remove("hidden");
 
 }
 
 
-/* =====================================
-   CALCULATE SERVICE
-===================================== */
+/* ================= CALCULATE ================= */
 
 function calculateService(){
 
-    const current =
-        Number(
-            document.getElementById(
-                "currentHour"
-            ).value
-        );
+  const setting = serviceSettings[selectedService];
+
+  const next =
+    Number(document.getElementById("nextService").value);
+
+  const current = Number(machine.hours);
 
 
-    const next =
-        Number(
-            document.getElementById(
-                "nextService"
-            ).value
-        );
+  if(isNaN(next) || next <= 0){
+
+    alert("Please enter Next Service Due.");
+
+    return;
+  }
 
 
-    if(
-        isNaN(current) ||
-        isNaN(next)
-    ){
+  const remainingHours = next - current;
 
-        alert(
-            "Please enter Current Hour and Next Service Due."
-        );
 
-        return;
+  /* HOURS STATUS */
 
+  if(remainingHours <= 0){
+
+    setStatus(
+      "🔴 SERVICE DUE",
+      "red"
+    );
+
+  }else if(remainingHours <= 50){
+
+    setStatus(
+      "🟡 SERVICE DUE SOON",
+      "yellow"
+    );
+
+  }else{
+
+    setStatus(
+      "🟢 OK",
+      "green"
+    );
+
+  }
+
+
+  document.getElementById("hoursRemaining")
+    .textContent = remainingHours + " H";
+
+  document.getElementById("dueDisplay")
+    .textContent = next + " H";
+
+
+  /* CONDITION */
+
+  let condition = 100;
+
+
+  if(setting.capacity){
+
+    const capacity =
+      Number(document.getElementById("oilCapacity").value);
+
+    const oilPercent =
+      Number(document.getElementById("oilPercent").value);
+
+
+    if(isNaN(capacity) || capacity <= 0){
+
+      alert("Please enter Capacity in Litres.");
+
+      return;
     }
 
 
-    if(next < current){
+    condition = oilPercent;
 
-        alert(
-            "Next Service Due cannot be lower than Current Hour."
-        );
+    document.getElementById("capacityDisplay")
+      .textContent =
+      capacity + " L / " + oilPercent + "%";
 
-        return;
+  }else{
 
-    }
+    document.getElementById("capacityDisplay")
+      .textContent = "N/A";
 
-
-    const settings =
-        serviceSettings[selectedService];
-
-
-    let mainPercent = 100;
-
-    let capacity = 0;
+  }
 
 
-    /* OIL/FUEL */
+  /* FILTER */
 
-    if(settings.capacityLabel){
+  if(setting.filter){
 
-        const capacityInput =
-            document.getElementById(
-                "capacityValue"
-            ).value;
+    const filterPercent =
+      Number(document.getElementById("filterPercent").value);
 
-
-        const remainingInput =
-            document.getElementById(
-                "remainingValue"
-            ).value;
+    document.getElementById("filterDisplay")
+      .textContent = filterPercent + "%";
 
 
-        capacity =
-            Number(capacityInput);
+    /*
+      Gauge uses the lower condition
+      between oil/fuel and filter.
+    */
 
+    if(setting.capacity){
 
-        mainPercent =
-            Number(remainingInput);
+      condition = Math.min(
+        condition,
+        filterPercent
+      );
 
+    }else{
 
-        if(
-            capacityInput === "" ||
-            isNaN(capacity) ||
-            capacity <= 0
-        ){
-
-            alert(
-                "Please enter a valid capacity."
-            );
-
-            return;
-
-        }
-
-
-        if(
-            isNaN(mainPercent) ||
-            mainPercent < 0 ||
-            mainPercent > 100
-        ){
-
-            alert(
-                "Remaining Capacity must be between 0 and 100."
-            );
-
-            return;
-
-        }
+      condition = filterPercent;
 
     }
 
+  }else{
 
-    /* FILTER */
+    document.getElementById("filterDisplay")
+      .textContent = "N/A";
 
-    let filterPercent = 100;
-
-
-    if(settings.filter){
-
-        filterPercent =
-            Number(
-                document.getElementById(
-                    "filterValue"
-                ).value
-            );
+  }
 
 
-        if(
-            isNaN(filterPercent) ||
-            filterPercent < 0 ||
-            filterPercent > 100
-        ){
+  /* LIMIT */
 
-            alert(
-                "Filter Condition must be between 0 and 100."
-            );
+  if(condition < 0) condition = 0;
 
-            return;
-
-        }
-
-    }
+  if(condition > 100) condition = 100;
 
 
-    /* OVERALL */
+  setGauge(condition);
 
-    const overall =
-        Math.min(
-            mainPercent,
-            filterPercent
-        );
+}
 
 
-    /* HOURS */
+/* ================= GAUGE ================= */
 
-    const hoursLeft =
-        next - current;
+function setGauge(percent){
 
-
-    /* GAUGE */
-
-    setGauge(overall);
+  let color;
 
 
-    document.getElementById(
-        "percent"
-    ).innerText =
-        Math.round(overall) + "%";
+  /*
+    > 50 = GREEN
+    20 - 50 = YELLOW
+    < 20 = RED
+  */
+
+  if(percent > 50){
+
+    color = "#16a34a";
+
+  }else if(percent >= 20){
+
+    color = "#eab308";
+
+  }else{
+
+    color = "#dc2626";
+
+  }
 
 
-    /* CAPACITY */
-
-    if(settings.capacityLabel){
-
-        document.getElementById(
-            "capacityDisplay"
-        ).innerText =
-            capacity + " L";
-
-    }
-
-    else{
-
-        document.getElementById(
-            "capacityDisplay"
-        ).innerText =
-            "N/A";
-
-    }
+  document.getElementById("gauge").style.background =
+    "conic-gradient(" +
+    color + " " + percent + "%, " +
+    "#e5e7eb " + percent + "%)";
 
 
-    /* FILTER */
+  document.getElementById("gaugePercent")
+    .textContent = Math.round(percent) + "%";
 
-    document.getElementById(
-        "filterDisplay"
-    ).innerText =
-        Math.round(filterPercent) + "%";
+}
 
 
-    /* HOURS */
+/* ================= STATUS ================= */
 
-    document.getElementById(
-        "hoursDisplay"
-    ).innerText =
-        hoursLeft + " H";
+function setStatus(text, type){
+
+  const box =
+    document.getElementById("statusBox");
+
+  box.textContent = text;
+
+  box.className = "status " + type;
+
+}
 
 
-    /* STATUS */
+/* ================= BACK ================= */
 
-    const statusBox =
-        document.getElementById(
-    
+function backToMachine(){
+
+  document.getElementById("serviceListPage")
+    .classList.add("hidden");
+
+  document.getElementById("machinePage")
+    .classList.remove("hidden");
+
+}
+
+
+function backToServices(){
+
+  document.getElementById("servicePage")
+    .classList.add("hidden");
+
+  document.getElementById("serviceListPage")
+    .classList.remove("hidden");
+
+}
+
+</script>
+
+</body>
+</html>
