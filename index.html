@@ -882,19 +882,183 @@ function setGauge(percent){
     < 20 = RED
   */
 
-  if(percent > 50){
+  function calculateService(){
 
-    color = "#16a34a";
+  const setting = serviceSettings[selectedService];
 
-  }else if(percent >= 20){
+  const next =
+    Number(document.getElementById("nextService").value);
 
-    color = "#eab308";
+  const current = Number(machine.hours);
+
+  if(isNaN(next) || next <= 0){
+    alert("Please enter Next Service Due.");
+    return;
+  }
+
+  const remainingHours = next - current;
+
+  document.getElementById("hoursRemaining")
+    .textContent = remainingHours + " H";
+
+  document.getElementById("dueDisplay")
+    .textContent = next + " H";
+
+
+  /* ================= CONDITION ================= */
+
+  let condition = 100;
+
+
+  /* OIL / FUEL */
+
+  if(setting.capacity){
+
+    const capacity =
+      Number(document.getElementById("oilCapacity").value);
+
+    const oilPercent =
+      Number(document.getElementById("oilPercent").value);
+
+
+    if(isNaN(capacity) || capacity <= 0){
+      alert("Please enter Capacity in Litres.");
+      return;
+    }
+
+    if(isNaN(oilPercent) || oilPercent < 0 || oilPercent > 100){
+      alert("Remaining Capacity must be between 0% and 100%.");
+      return;
+    }
+
+    condition = oilPercent;
+
+    document.getElementById("capacityDisplay")
+      .textContent =
+      capacity + " L / " + oilPercent + "%";
 
   }else{
 
-    color = "#dc2626";
+    document.getElementById("capacityDisplay")
+      .textContent = "N/A";
 
   }
+
+
+  /* FILTER / SEP / BREATHER */
+
+  if(setting.filter){
+
+    const filterPercent =
+      Number(document.getElementById("filterPercent").value);
+
+    if(isNaN(filterPercent) ||
+       filterPercent < 0 ||
+       filterPercent > 100){
+
+      alert("Condition must be between 0% and 100%.");
+      return;
+    }
+
+    document.getElementById("filterDisplay")
+      .textContent = filterPercent + "%";
+
+
+    /* Use the lower condition */
+
+    condition = Math.min(
+      condition,
+      filterPercent
+    );
+
+  }else{
+
+    document.getElementById("filterDisplay")
+      .textContent = "N/A";
+
+  }
+
+
+  /* LIMIT */
+
+  if(condition < 0) condition = 0;
+
+  if(condition > 100) condition = 100;
+
+
+  /* ================= GAUGE ================= */
+
+  setGauge(condition);
+
+
+  /* ================= FINAL STATUS ================= */
+
+  /*
+    Condition:
+    >50%  = GREEN
+    20-50% = YELLOW
+    <20%  = RED
+
+    Hours:
+    >50H   = GREEN
+    1-50H  = YELLOW
+    <=0H   = RED
+
+    Whichever is worse wins.
+  */
+
+  let conditionLevel;
+
+  if(condition > 50){
+    conditionLevel = 3; // GREEN
+  }else if(condition >= 20){
+    conditionLevel = 2; // YELLOW
+  }else{
+    conditionLevel = 1; // RED
+  }
+
+
+  let hoursLevel;
+
+  if(remainingHours > 50){
+    hoursLevel = 3; // GREEN
+  }else if(remainingHours > 0){
+    hoursLevel = 2; // YELLOW
+  }else{
+    hoursLevel = 1; // RED
+  }
+
+
+  /* The worst condition controls the status */
+
+  const finalLevel =
+    Math.min(conditionLevel, hoursLevel);
+
+
+  if(finalLevel === 1){
+
+    setStatus(
+      "🔴 SERVICE DUE",
+      "red"
+    );
+
+  }else if(finalLevel === 2){
+
+    setStatus(
+      "🟡 SERVICE DUE SOON",
+      "yellow"
+    );
+
+  }else{
+
+    setStatus(
+      "🟢 OK",
+      "green"
+    );
+
+  }
+
+}
 
 
   document.getElementById("gauge").style.background =
